@@ -27,7 +27,13 @@ class  Worker  {
   void  drawMe()  {
     
     noStroke();
-    fill(0,255,0);
+    
+    if  (  this.state.equals("Waiting")  )  {
+      fill(255,0,0);
+    }
+    else  {
+      fill(0,255,0);
+    }
     circle(this.pos.x, this.pos.y, 8);
     
     if  (this.holding != null)  {

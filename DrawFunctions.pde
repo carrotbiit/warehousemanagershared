@@ -72,7 +72,7 @@ void  drawSim() {
   if  (showTrucks)  {
     for (Truck truck : trucks) {
       truck.drawMe();
-      println("truck ", trucks.indexOf(truck), "cur workers", truck.numCurWorkers);
+      //println("truck ", trucks.indexOf(truck), "cur workers", truck.numCurWorkers);
       //if  (truck.load > truck.maxCapacity)  {
       //  println("truck", trucks.indexOf(truck), "is overloaded");
       //}
@@ -91,7 +91,7 @@ void  drawSim() {
   if  (showEmployees)  {
     for  (Worker worker : Workers) {
       worker.drawMe();
-      println(worker.state);
+      //println(worker.state);
       //println("\t");
       //print(  incomingTruck.packages.get(0).indexOf(worker.targPack)  );
     }
@@ -100,5 +100,6 @@ void  drawSim() {
   //draw the packages
   
   // draw the delivery text
+  //println(  incomingTruck.numCurWorkers  );
   //println(incomingTruck.packages.get(0).size());
 }
