@@ -24,7 +24,7 @@ class Truck {
     this.load = 0;
     this.maxCapacity = truckMaxLoad;
     this.framesSinceDelivery = 0;
-    for (int idx = 0; idx < streetCount; idx++) {
+    for (int idx = 0; idx < numStreets; idx++) {
       packages.add(new ArrayList<Package>());
     }
     streetIdx = -1;
@@ -145,6 +145,7 @@ class Truck {
       this.state = "Stationary";
       this.roadOn = null;
       this.position = restPosition.copy();
+      this.load = 0; //test
     }
    }
    
@@ -155,7 +156,7 @@ class Truck {
   
   // Method to find the next closest street
   int locateNextStreet() {
-    for (int idx = 0; idx < streetCount; idx++) {
+    for (int idx = 0; idx < numStreets; idx++) {
       if (!this.packages.get(idx).isEmpty()) {
         return idx;
       }
@@ -204,7 +205,7 @@ class Truck {
   // Draw method
   void drawMe() {
     rectMode(CORNER);
-    if (this.state.equals("Delivering") || this.state.equals("Unloading")  ||  this.state.equals("Waiting to Leave")) {
+    if (this.state.equals("Delivering") || this.state.equals("Unloading")) {
       fill(0, 0, 200);   
     } else {
       fill(0, 200, 0);

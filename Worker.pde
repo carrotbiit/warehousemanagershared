@@ -283,6 +283,9 @@ class  Worker  {
           this.holding = Shelves.get(targShelf).stored.get(  Shelves.get(targShelf).stored.indexOf(targPack)  );
           Shelves.get(targShelf).stored.remove(  this.holding  );
           this.holding.claimed = true; //false? i dont think it matters
+          Shelves.get(targShelf).capacity += 1;
+          this.targShelf = -1;
+          
           
           //Shelves.get(targInd).claimed.remove(  Shelves.get(targInd).stored.indexOf(this.holding)  );
           //Shelves.get(targInd).stored.remove(  this.holding  );
@@ -343,11 +346,13 @@ class  Worker  {
         //CAN'T directly unload incoming onto outgoing
         
         else  if  (  t.state.equals("Stationary")  )  {
+          //println("  shelf loop was run for outgoing", frameCount);
           //Loop shelves
           for  (Shelf s: Shelves)  {
             for  (int i = 0; i < s.stored.size(); i++)  {
               Package p = s.stored.get(i);
-              if  (  !p.claimed  &&  t.canFit(p)  )  {  //found an unclaimed AND valid package for truck t from SHELF S
+              //println(p.weight, t.load, t.maxCapacity, t.canFit(p));
+              if  (  !p.claimed  &&  t.canFit(p)  &&  t.state.equals("Stationary")  )  {  //found an unclaimed AND valid package for truck t from SHELF S
                 this.targetShelf(s);
                 this.setVelTarget();
                 this.state = "Retrieving";
@@ -359,12 +364,12 @@ class  Worker  {
                 p.claimed = true;  //The package is now CLAIMED
                 break;
               }
-              ////test
-              //else  if  (  !t.canFit(p)  &&  !t.state.equals("Waiting To Leave")  &&  !queue.contains(t)  &&  t.numCurWorkers == 0)  {
-              //  queue.add(t);
-              //  t.state = "Waiting to Leave";
-              //}
-              ////test
+              else  if  (  !t.canFit(p)  &&  !t.state.equals("Waiting To Leave")  &&  !queue.contains(t)  &&  t.numCurWorkers == 0)  {
+                println("sent truck to leave");
+                queue.add(t);
+                t.state = "Waiting to Leave";
+                break;
+              }
               
               if  (  this.state.equals("Retrieving")  )  {  //Leave if we found a valid package
                 break;
