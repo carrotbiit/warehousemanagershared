@@ -46,7 +46,7 @@ void drawUI() {
 
 
 void  drawSim() {
-
+  println();
   noStroke();
 
   //draw the roads
@@ -72,11 +72,9 @@ void  drawSim() {
   if  (showTrucks)  {
     for (Truck truck : trucks) {
       truck.drawMe();
-      //println("truck ", trucks.indexOf(truck), "cur workers", truck.numCurWorkers);
-      //if  (truck.load > truck.maxCapacity)  {
-      //  println("truck", trucks.indexOf(truck), "is overloaded");
-      //}
+      println(truck.state);
     }
+    
     incomingTruck.drawMe();
   }
 
@@ -84,8 +82,6 @@ void  drawSim() {
   for (Shelf shelf : Shelves) {
     shelf.drawMe();
   }
-  
-  println();
 
   //draw the workers
   if  (showEmployees)  {
@@ -102,4 +98,5 @@ void  drawSim() {
   // draw the delivery text
   println( "num workers " , incomingTruck.numCurWorkers  );
   println( "num packages " , incomingTruck.packages.get(0).size());
+  println( "incoming state ", incomingTruck.state);
 }

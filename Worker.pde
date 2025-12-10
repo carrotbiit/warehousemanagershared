@@ -382,7 +382,8 @@ class  Worker  {
   
   //Looking to unload the incoming truck
   void  searchIncoming()  {
-    if  (  incomingTruck.state.equals("Unloading")  &&  incomingTruck.numCurWorkers < 4  &&  incomingTruck.numCurWorkers < incomingTruck.packages.get(0).size())  {
+    //if  (  incomingTruck.state.equals("Unloading")  &&  incomingTruck.numCurWorkers < 4  &&  incomingTruck.numCurWorkers < incomingTruck.packages.get(0).size())  {
+    if  (  incomingTruck.state.equals("Unloading")  &&  incomingTruck.numCurWorkers < 5  )  {
 
       for  (int i = 0; i < incomingTruck.packages.get(0).size(); i++)  {
         Package p = incomingTruck.packages.get(0).get(i);  //setting
