@@ -67,7 +67,7 @@ void  drawSim() {
     house.drawMe();
   }
   
-  println();
+  //println();
   //draw the trucks
   if  (showTrucks)  {
     for (Truck truck : trucks) {
@@ -85,7 +85,7 @@ void  drawSim() {
     shelf.drawMe();
   }
   
-  //println();
+  println();
 
   //draw the workers
   if  (showEmployees)  {
@@ -100,6 +100,6 @@ void  drawSim() {
   //draw the packages
   
   // draw the delivery text
-  //println(  incomingTruck.numCurWorkers  );
-  //println(incomingTruck.packages.get(0).size());
+  println( "num workers " , incomingTruck.numCurWorkers  );
+  println( "num packages " , incomingTruck.packages.get(0).size());
 }
