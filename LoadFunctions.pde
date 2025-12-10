@@ -1,7 +1,7 @@
 void loadRoads() {
   // Variable declarations
   float x;
-  float spacing = height / (streetCount + 1);
+  float spacing = height / (numStreets + 1);
   float y = spacing;
   
   // Add the auxillary roads
@@ -11,7 +11,7 @@ void loadRoads() {
   
   // Add streets
   x = midpoint(width, mergeRoad.center.x + mergeRoad.radiusWidth) - roadWidth; // Between the merging road and the right edge of the screen
-  for (int count = 0; count < streetCount; count++) {
+  for (int count = 0; count < numStreets; count++) {
     streets.add(new Road(x, y, "Horizontal", x - mergeRoad.center.x - mergeRoad.radiusWidth, laneWidth, true));
     y += spacing;
   }
