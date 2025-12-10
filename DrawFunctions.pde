@@ -23,17 +23,17 @@ void drawUI() {
   text("Total Labour Expenses", 10, 210);
   text("Total Expenses", 10, 260);
   textAlign(RIGHT);
-  text("\n$ " + nf(roundAny( totalGasExpense, 2), 0, 2), uiX - 10, 160);
-  text("\n$ " + nf(roundAny( totalWageExpense, 2), 0, 2), uiX - 10, 210);
-  text("\n$ " + nf(roundAny( totalGasExpense + totalWageExpense, 2), 0, 2), uiX - 10, 260);
+  text("\n$ " + nfc(roundAny( totalGasExpense, 2), 2), uiX - 10, 160);
+  text("\n$ " + nfc(roundAny( totalWageExpense, 2), 2), uiX - 10, 210);
+  text("\n$ " + nfc(roundAny( totalGasExpense + totalWageExpense, 2), 2), uiX - 10, 260);
   
   // Profit
   textAlign(LEFT);
   text("Gross Profit", 10, 310);
   text("Net Profit", 10, 360);
   textAlign(RIGHT);
-  text("\n$ " + nf(roundAny( grossProfit, 2), 0, 2), uiX - 10, 310);
-  text("\n$ " + nf(roundAny( grossProfit - totalGasExpense - totalWageExpense, 2), 0, 2), uiX - 10, 360);
+  text("\n$ " + nfc(roundAny( grossProfit, 2), 2), uiX - 10, 310);
+  text("\n$ " + nfc(roundAny( grossProfit - totalGasExpense - totalWageExpense, 2), 2), uiX - 10, 360);
   
   // Warehouse rating
   textAlign(CENTER);
