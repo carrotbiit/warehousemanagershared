@@ -204,7 +204,7 @@ class Truck {
   // Draw method
   void drawMe() {
     rectMode(CORNER);
-    if (this.state.equals("Delivering") || this.state.equals("Unloading")) {
+    if (this.state.equals("Delivering") || this.state.equals("Unloading")  ||  this.state.equals("Waiting to Leave")) {
       fill(0, 0, 200);   
     } else {
       fill(0, 200, 0);

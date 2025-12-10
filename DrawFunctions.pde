@@ -72,7 +72,7 @@ void  drawSim() {
   if  (showTrucks)  {
     for (Truck truck : trucks) {
       truck.drawMe();
-      println(truck.state);
+      println(truck.state, truck.numCurWorkers);
     }
     
     incomingTruck.drawMe();
