@@ -323,11 +323,13 @@ class  Worker  {
               t.load += p.weight;  //**********************************************
               t.numCurWorkers += 1;
               p.claimed = true;
+              println(  trucks.indexOf(t), t.state  ,  frameCount);
               break;
             }
             else  if  (  !t.canFit(p)  &&  !t.state.equals("Waiting To Leave")  &&  !queue.contains(t)  &&  t.numCurWorkers == 0)  {
               queue.add(t);
               t.state = "Waiting to Leave";
+              break;
             }
           }
 

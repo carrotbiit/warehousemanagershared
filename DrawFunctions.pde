@@ -67,7 +67,7 @@ void  drawSim() {
     house.drawMe();
   }
   
-  println();
+  //println();
   //draw the trucks
   if  (showTrucks)  {
     for (Truck truck : trucks) {
