@@ -397,6 +397,7 @@ class  Worker  {
               this.targetIncoming();
               this.setVelTarget();
               this.state = "Unloading";
+              incomingTruck.numCurWorkers += 1;
               this.targPack = p;
               this.targShelf = Shelves.indexOf(s);
               this.targTruck = null;
