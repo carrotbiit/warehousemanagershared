@@ -31,6 +31,8 @@ class  Shelf  {
     //text(Shelves.indexOf(this) , this.pos.x, this.pos.y + (sH/2));
     textSize(20);
     text(this.stored.size() , this.pos.x + 50, this.pos.y + (sH/2));
+    textSize(20);
+    text(this.capacity , this.pos.x + 100, this.pos.y + (sH/2));
     
     noStroke();
     for  (int i = 0; i < this.stored.size(); i++)  {
