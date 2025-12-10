@@ -56,7 +56,7 @@ class Road {
     fill(255);
     rectMode(RADIUS);
     if (orientation.equals("Horizontal")) {
-      x = this.center.x - this.radiusWidth;
+      x = this.center.x - this.radiusWidth + 2 * laneMarkingWidth;
       y = this.center.y;
       for (int count = 0; count < this.radiusWidth / (2 * laneMarkingWidth); count++) {
         rect(x, y, laneMarkingWidth, 1);
@@ -64,8 +64,8 @@ class Road {
       }
     } else {
       x = this.center.x;
-      y = this.center.y - this.radiusHeight;
-      for (int count = 0; count < this.radiusHeight / (2 * laneMarkingWidth); count++) {
+      y = this.center.y - this.radiusHeight + 2 * laneMarkingWidth;
+      for (int count = 1; count < this.radiusHeight / (2 * laneMarkingWidth); count++) {
         rect(x, y, 1, laneMarkingWidth);
         y += 4 * laneMarkingWidth;
       }
