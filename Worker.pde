@@ -309,11 +309,11 @@ class  Worker  {
       if  (  t.state.equals("Stationary")  )  {
         
         //check incoming                                                           //careful ||||||
-        if  (  incomingTruck.state.equals("Unloading")  &&  incomingTruck.numCurWorkers < 5  ){//&&  incomingTruck.numCurWorkers < incomingTruck.packages.get(0).size())  {
+        if  (  incomingTruck.state.equals("Unloading")  &&  incomingTruck.numCurWorkers < 5  )  {//&&  incomingTruck.numCurWorkers < incomingTruck.packages.get(0).size())  {
           //loop through packages on the incoming
           for  (int i = 0; i < incomingTruck.packages.get(0).size(); i++)  {
             Package p = incomingTruck.packages.get(0).get(i);  //setting
-            if  (  !p.claimed  &&  t.canFit(p)  )  {  //found an unclaimed AND valid package for truck t from INCOMING
+            if  (  !p.claimed  &&  t.canFit(p)  &&  t.state.equals("Stationary")  )  {  //found an unclaimed AND valid package for truck t from INCOMING
               this.targetIncoming();
               this.setVelTarget();
               this.state = "Unloading";  //set state
@@ -342,33 +342,35 @@ class  Worker  {
         //else?
         //CAN'T directly unload incoming onto outgoing
         
-        //Loop shelves
-        for  (Shelf s: Shelves)  {
-          for  (int i = 0; i < s.stored.size(); i++)  {
-            Package p = s.stored.get(i);
-            if  (  !p.claimed  &&  t.canFit(p)  )  {  //found an unclaimed AND valid package for truck t from SHELF S
-              this.targetShelf(s);
-              this.setVelTarget();
-              this.state = "Retrieving";
-              this.targPack = p;
-              this.targShelf = Shelves.indexOf(s);
-              this.targTruck = t;
-              t.load += p.weight;  //**********************************************
-              t.numCurWorkers += 1;
-              p.claimed = true;  //The package is now CLAIMED
-              break;
+        else  if  (  t.state.equals("Stationary")  )  {
+          //Loop shelves
+          for  (Shelf s: Shelves)  {
+            for  (int i = 0; i < s.stored.size(); i++)  {
+              Package p = s.stored.get(i);
+              if  (  !p.claimed  &&  t.canFit(p)  )  {  //found an unclaimed AND valid package for truck t from SHELF S
+                this.targetShelf(s);
+                this.setVelTarget();
+                this.state = "Retrieving";
+                this.targPack = p;
+                this.targShelf = Shelves.indexOf(s);
+                this.targTruck = t;
+                t.load += p.weight;  //**********************************************
+                t.numCurWorkers += 1;
+                p.claimed = true;  //The package is now CLAIMED
+                break;
+              }
+              ////test
+              //else  if  (  !t.canFit(p)  &&  !t.state.equals("Waiting To Leave")  &&  !queue.contains(t)  &&  t.numCurWorkers == 0)  {
+              //  queue.add(t);
+              //  t.state = "Waiting to Leave";
+              //}
+              ////test
+              
+              if  (  this.state.equals("Retrieving")  )  {  //Leave if we found a valid package
+                break;
+              }
+              
             }
-            ////test
-            //else  if  (  !t.canFit(p)  &&  !t.state.equals("Waiting To Leave")  &&  !queue.contains(t)  &&  t.numCurWorkers == 0)  {
-            //  queue.add(t);
-            //  t.state = "Waiting to Leave";
-            //}
-            ////test
-            
-            if  (  this.state.equals("Retrieving")  )  {  //Leave if we found a valid package
-              break;
-            }
-            
           }
         }
         
