@@ -2,13 +2,15 @@ class  Shelf  {
   //fields
   PVector  pos;  //position of the shelves, the centre of the drawn rectangle
   ArrayList<Package>  stored;  //list of stored package objects, String is a place holder
-  ArrayList<Boolean>  claimed;
+  int  capacity;
+  //ArrayList<Boolean>  claimed;
   
   //constructor
   Shelf(PVector p)  {
     this.pos = p.copy();
     this.stored = new ArrayList();
-    this.claimed = new ArrayList();
+    this.capacity = shelfCapacity;
+    //this.claimed = new ArrayList();
   }
   
   //methods
@@ -37,11 +39,11 @@ class  Shelf  {
     
     }
     
-    String msg = "";
-    for  (int i = 0; i < this.claimed.size(); i++)  {
-      msg += this.claimed.get(i) + "\t";
-    }
-    println(msg);
+    //String msg = "";
+    //for  (int i = 0; i < this.claimed.size(); i++)  {
+    //  msg += this.claimed.get(i) + "\t";
+    //}
+    //println(msg);
     //println(this.claimed.size());
     
   }

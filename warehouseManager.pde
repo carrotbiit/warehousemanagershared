@@ -8,6 +8,8 @@ int  numTrucks = 5;  //the number of shipping trucks
 int  numWorkers = 10;  //the number of employees
 int numHouses = 6;
 int  numShelves = 6;  //the number of shelves in the warehouse
+//caelin
+int  shelfCapacity = 5;  //the number of packages a shelf can store
 
 float  wage = 20;  //employee wage
 float  gasPrice = 1.3;  //price of gas

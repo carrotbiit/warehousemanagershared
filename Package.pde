@@ -8,6 +8,8 @@ class  Package  {
   float profit; 
   float urgency; // number of frames until house's satisfaction reduces by 0.1
   float framesWaited;
+  //caelin
+  boolean  claimed;
   
   // Constructor method
   Package(House destination, color colour, float weight, float profit) {
@@ -18,6 +20,8 @@ class  Package  {
     this.profit = profit;
     this.urgency = 1;
     this.framesWaited = 0;
+    //caelin
+    this.claimed = false;
   }
   
   // Satisfaction rating between 1 and 5

@@ -66,30 +66,39 @@ void  drawSim() {
   for (House house : allHouses) {
     house.drawMe();
   }
-
+  
+  println();
   //draw the trucks
   if  (showTrucks)  {
     for (Truck truck : trucks) {
       truck.drawMe();
+      println("truck ", trucks.indexOf(truck), "cur workers", truck.numCurWorkers);
+      //if  (truck.load > truck.maxCapacity)  {
+      //  println("truck", trucks.indexOf(truck), "is overloaded");
+      //}
     }
     incomingTruck.drawMe();
   }
 
   //draw the shelves
-  println();
   for (Shelf shelf : Shelves) {
     shelf.drawMe();
   }
+  
+  //println();
 
   //draw the workers
   if  (showEmployees)  {
     for  (Worker worker : Workers) {
       worker.drawMe();
+      println(worker.state);
+      //println("\t");
+      //print(  incomingTruck.packages.get(0).indexOf(worker.targPack)  );
     }
   }
 
   //draw the packages
   
   // draw the delivery text
-  
+  //println(incomingTruck.packages.get(0).size());
 }

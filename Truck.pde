@@ -244,6 +244,6 @@ class Truck {
      Road street = item.destination.street;
      int idx = streets.indexOf(street);
      this.packages.get(idx).add(item);
-     this.load += item.weight;
+     //this.load += item.weight;
    }
 }
