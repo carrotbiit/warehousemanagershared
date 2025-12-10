@@ -1,16 +1,16 @@
 import g4p_controls.*;
 //Warehouse Manager
 
-String[] options = {"2", "4", "6", "8", "10"};
-
-//Parameters
+// Number of objects
 int  numTrucks = 5;  //the number of shipping trucks
 int  numWorkers = 10;  //the number of employees
 int numHouses = 6;
 int  numShelves = 6;  //the number of shelves in the warehouse
-//caelin
+int numStreets = 9;
+
 int  shelfCapacity = 5;  //the number of packages a shelf can store
 
+// Income and expense variables
 float  wage = 20;  //employee wage
 float  gasPrice = 1.3;  //price of gas
 float  totalWageExpense = 0;
@@ -18,24 +18,9 @@ float  totalGasExpense = 0;
 float grossProfit = 0;
 float netProfit = 0;
 
+// Truck variables
 int  truckMaxLoad = 100;  //maximum carrying capacity of the truck
 float truckSpeed = 0.1;
-
-int  packageOutRate = 10;  //the number of randomly generated packages requested from the warehouse per framesSinceOrder
-
-boolean  isPaused = false;  //if the simulation is paused or not
-boolean showTrucks = true;
-boolean showEmployees = true;
-String detail = "high";
-float  curTime = 0;  //the current time value
-float  simSpeed = 5;  //multiplies delta time
-float workerSpeed = 0.09;
-
-int[] intChanges = {numTrucks, numWorkers, numHouses, numShelves, packageOutRate, truckMaxLoad};
-float[] floatChanges = {wage, gasPrice};
-
-// Number of objects
-int streetCount = 9;
 
 // House variables
 int houseDistance = 12;
@@ -44,7 +29,7 @@ int houseSize = 10;
 //User Interface variables
 float  uiX = 200;  //the x coordinate of the right side/end of the UI
 
-//Sim Graphics variables
+// Graphic simulation variables
 float  spacer = 10;  //spacer for drawing
 float  sW = 70;  //shelf width
 float  sH = 10;  //shelf height
@@ -58,6 +43,7 @@ int laneMarkingWidth = 4;
 int framesBetweenOrders = 30 * 60 * 5;
 int framesSinceOrder = framesBetweenOrders; // Make a package order at the very start
 int deliveryFrames = 270;
+int  packageOutRate = 10;  //the number of randomly generated packages requested from the warehouse per framesSinceOrder
 
 // Package variables
 float minPackageWeight = 5;
@@ -68,6 +54,18 @@ float maxPackageCost = 100;
 // Rating variables
 int numRatings = 0;
 float averageRating = 0;
+
+// Simulation settings (pause, show, etc.)
+boolean  isPaused = false;  //if the simulation is paused or not
+boolean showTrucks = true;
+boolean showEmployees = true;
+String detail = "high";
+float  curTime = 0;  //the current time value
+float  simSpeed = 5;  //multiplies delta time
+float workerSpeed = 0.09;
+
+int[] intChanges = {numTrucks, numWorkers, numHouses, numShelves, packageOutRate, truckMaxLoad};
+float[] floatChanges = {wage, gasPrice};
 
 // Object variables
 Warehouse Warehouse;
