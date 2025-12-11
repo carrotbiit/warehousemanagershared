@@ -28,13 +28,13 @@ void drawUI() {
   // Number of trucks and employees
   textSize(18);
   textAlign(LEFT);
-  text("# of Trucks:  " + numTrucks, 10, 130);
-  text("# of Employees:  " + numWorkers, 10, 150);
+  text("# of Trucks:  " + numTrucks, 10, 127);
+  text("# of Employees:  " + numWorkers, 10, 147);
 
   // Expenses
-  text("Total Gas Expenses:", 10, 190);
-  text("Total Labour Expenses:", 10, 240);
-  text("Total Expenses:", 10, 290);
+  text("Total Gas Expenses:", 10, 187);
+  text("Total Labour Expenses:", 10, 237);
+  text("Total Expenses:", 10, 287);
   textAlign(RIGHT);
   text(dollarFormat(totalGasExpense), uiX - 10, 190);
   text(dollarFormat(totalWageExpense), uiX - 10, 240);
@@ -43,16 +43,16 @@ void drawUI() {
   
   // Profit
   textAlign(LEFT);
-  text("Gross Profit", 10, 340);
-  text("Net Profit", 10, 390);
+  text("Gross Profit", 10, 337);
+  text("Net Profit", 10, 387);
   textAlign(RIGHT);
   text(dollarFormat(grossProfit), uiX - 10, 340);
   netProfit = grossProfit - totalExpenses;
   text(dollarFormat(netProfit), uiX - 10, 392);
-  text(dollarFormat(netProfit), uiX - 10, 391);
+  text(dollarFormat(netProfit), uiX - 10, 392);
   text(dollarFormat(netProfit), uiX - 9, 390);
   text(dollarFormat(netProfit), uiX - 8, 390);
-  if  (netProfit > 0)  {
+  if  (netProfit > 0)  { //setting fill color for profit, red if negative, green if position, grey if break even
     fill(0,230,0);
   }
   else  if  (netProfit < 0)  {
@@ -62,8 +62,7 @@ void drawUI() {
     fill(45);
   }
   text(dollarFormat(netProfit), uiX - 10, 390);
-  
-  //this.averageRating = float(mouseX)/float(width) * 5;
+  text(dollarFormat(netProfit), uiX - 11, 390);
   
   // Warehouse rating
   fill(45);
@@ -129,6 +128,9 @@ void  drawSim() {
 //draw star
 void  drawStar(PVector  pos,  float  n,  float multiplier)  {
   
+  color  dark = color(230, 180, 0);
+  color  light = color(255, 214, 10);
+  
   //points for the star
   PVector  p1 = new PVector(0,  -multiplier);
   PVector  p2 = new PVector(0.224398 * multiplier,  0.308858 * -multiplier);
@@ -142,7 +144,7 @@ void  drawStar(PVector  pos,  float  n,  float multiplier)  {
   PVector  p10 = new PVector(0.224398 * -multiplier,  0.308858 * -multiplier);
   
   //Outline
-  stroke(120,120,0);
+  stroke(dark);
   strokeWeight(5);
   triangle(p1.x  +  pos.x, p1.y  +  pos.y, p2.x  +  pos.x, p2.y  +  pos.y, p8.x  +  pos.x, p8.y  +  pos.y);
   triangle(p10.x  +  pos.x, p10.y  +  pos.y, p1.x  +  pos.x, p1.y  +  pos.y, p4.x  +  pos.x, p4.y  +  pos.y);
@@ -154,20 +156,20 @@ void  drawStar(PVector  pos,  float  n,  float multiplier)  {
   noStroke();
   //Left half
   if  (averageRating >= n + 0.5)  {
-    fill(255,255,0);
+    fill(light);
   }
   else  {
-    fill(120,120,0);
+    fill(dark);
   }
   triangle(p10.x  +  pos.x, p10.y  +  pos.y, p9.x  +  pos.x, p9.y  +  pos.y, p6.x  +  pos.x, p6.y  +  pos.y);
   triangle(p1.x  +  pos.x, p1.y  +  pos.y, p6.x  +  pos.x, p6.y  +  pos.y, p7.x  +  pos.x, p7.y  +  pos.y);
   
   //Right half
   if  (roundAny(averageRating, 1) >= n + 1)  {
-    fill(255,255,0);
+    fill(light);
   }
   else  {
-    fill(120,120,0);
+    fill(dark);
   }
   triangle(p2.x  +  pos.x, p2.y  +  pos.y, p3.x  +  pos.x, p3.y  +  pos.y, p6.x  +  pos.x, p6.y  +  pos.y);
   triangle(p1.x  +  pos.x, p1.y  +  pos.y, p5.x  +  pos.x, p5.y  +  pos.y, p6.x  +  pos.x, p6.y  +  pos.y);
