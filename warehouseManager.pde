@@ -95,6 +95,7 @@ void  setup()  {
   size(700, 500);
   createGUI();
   reset();
+  println("Welcome to Warehouse Manager!\nPlease refer to the User Manual for the controls.");
 }
 
 void  draw()  {
