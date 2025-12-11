@@ -153,13 +153,13 @@ public void createGUI(){
   wageLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   wageLabel.setText("Employee Wage");
   wageLabel.setOpaque(false);
-  showTrucksButton = new GCheckbox(controls, 275, 290, 100, 20);
+  showTrucksButton = new GCheckbox(controls, 275, 315, 100, 20);
   showTrucksButton.setIconAlign(GAlign.LEFT, GAlign.MIDDLE);
   showTrucksButton.setText("Show Trucks");
   showTrucksButton.setOpaque(false);
   showTrucksButton.addEventHandler(this, "showTrucksClicked");
   showTrucksButton.setSelected(true);
-  showEmployeesButton = new GCheckbox(controls, 275, 315, 116, 30);
+  showEmployeesButton = new GCheckbox(controls, 275, 340, 120, 30);
   showEmployeesButton.setIconAlign(GAlign.LEFT, GAlign.MIDDLE);
   showEmployeesButton.setText("Show Employees");
   showEmployeesButton.setOpaque(false);
