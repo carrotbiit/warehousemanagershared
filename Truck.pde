@@ -161,7 +161,6 @@ class Truck {
       this.state = "Returning from Intersection";
       this.position = new PVector(this.position.x, this.roadOn.topY);
       this.velocity = new PVector(-truckSpeed, 0);
-      print("a");
     }
     
     // Truck has returned to warehouse
