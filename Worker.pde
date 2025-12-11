@@ -32,7 +32,7 @@ class  Worker  {
       strokeWeight(2);
     }
     
-    if  (this.holding != null)  {
+    if  (this.holding != null && !detail.equals("Low"))  {
       fill(holding.colour);
       stroke(  red(holding.colour)*0.5, green(holding.colour)*0.5, blue(holding.colour)*0.5  );
       if  (  !detail.equals("High")  ) {
