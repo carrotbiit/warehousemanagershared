@@ -59,8 +59,14 @@ class  Worker  {
       }
       strokeWeight(2);
     }
-      
-    circle(this.pos.x, this.pos.y, 10);
+    
+    if(detail.equals("High")){
+      circle(this.pos.x, this.pos.y-3, 6);
+      ellipse(this.pos.x, this.pos.y+5, 6, 10);
+    }
+    else{
+      circle(this.pos.x, this.pos.y, 10);
+    }
     
     
   }
