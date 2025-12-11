@@ -1,9 +1,9 @@
 class Truck {
   // Fields
   ArrayList<ArrayList<Package>> packages; // Packages are grouped by streets
-  Road roadOn;
+  Road roadOn; // The road that the truck is on/heading towards
   PVector position, velocity;
-  PVector restPosition;
+  PVector restPosition; // Resting position at the warehouse
   // Incoming trucks --> "Shipping to Warehouse", "Unloading, "Done Unloading" 
   // Other trucks --> "Stationary", "Waiting to Leave", "Leaving Warehouse", "Going to Street", "At Street", "Delivering", "Leaving Street", "Returning from Street", "Returning from Intersection"
   String state; 
@@ -11,7 +11,7 @@ class Truck {
   float maxCapacity;
   int streetIdx; // Current street of the struck
   int  numCurWorkers;  //the number of workers working on a truck
-  int framesSinceDelivery;
+  int framesSinceDelivery; // The number of frames elapsed since the last delivery
 
   // Constructor method
   Truck(Road roadOn, float x, float y) {

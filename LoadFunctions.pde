@@ -51,7 +51,6 @@ void  loadShelves()  {
 // Add the workers to the warehouse
 void  loadWorkers()  {
   int  xN, yN;
-  //xN = round(numWorkers/2);
   xN = int(sqrt(numWorkers));
   yN = int(numWorkers/xN);
   float x,y;

@@ -1,11 +1,11 @@
 // Class to represent roads and streets
 class Road {
   // Fields
-  ArrayList<House> houses;
+  ArrayList<House> houses; // Houses that are located on the street
   PVector center;
   String orientation; // "Vertical" or "Horizontal"
   float radiusWidth, radiusHeight;
-  boolean isEnd; // End of the road
+  boolean isEnd; // End of the road --> draws a circular arc at the end
   
   
   // Constructor method
