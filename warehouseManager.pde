@@ -51,7 +51,8 @@ float grossProfit = 0;
 float netProfit = 0;
 
 //User Interface variables
-float  uiX = 200;  //the x coordinate of the right side/end of the UI
+float  uiX = 220;  //the x coordinate of the right side/end of the UI
+float  gap = 14;
 
 // Graphic simulation variables
 float  spacer = 10;  //spacer for drawing

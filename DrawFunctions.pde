@@ -13,6 +13,10 @@ void drawUI() {
   fill(220);
   rectMode(CENTER);
   rect(uiX/2,  55, 165, 83, 10);
+  //rect(uiX/2,  (height/2)+100, 165, 83, 10);
+  fill(220);
+  rectMode(CENTER);
+  rect(uiX/2,  (height/2)+50, uiX - (gap*2*0.6), 390, 10);
 
   // Warehouse Manager title
   fill(45);
@@ -28,41 +32,47 @@ void drawUI() {
   // Number of trucks and employees
   textSize(18);
   textAlign(LEFT);
-  text("# of Trucks:  " + numTrucks, 10, 127);
-  text("# of Employees:  " + numWorkers, 10, 147);
+  text("# of Trucks:  " + numTrucks, gap, 127);
+  text("# of Employees:  " + numWorkers, gap, 147);
 
   // Expenses
-  text("Total Gas Expenses:", 10, 187);
-  text("Total Labour Expenses:", 10, 237);
-  text("Total Expenses:", 10, 287);
+  text("Total Gas Expenses:", gap, 187);
+  text("Total Labour Expenses:", gap, 237);
+  text("Total Expenses:", gap, 287);
   textAlign(RIGHT);
-  text(dollarFormat(totalGasExpense), uiX - 10, 190);
-  text(dollarFormat(totalWageExpense), uiX - 10, 240);
+  text(dollarFormat(totalGasExpense), uiX - gap, 190);
+  text(dollarFormat(totalWageExpense), uiX - gap, 240);
   totalExpenses = totalGasExpense + totalWageExpense;
-  text(dollarFormat(totalExpenses), uiX - 10, 290);
+  text(dollarFormat(totalExpenses), uiX - gap, 290);
   
   // Profit
   textAlign(LEFT);
-  text("Gross Profit", 10, 337);
-  text("Net Profit", 10, 387);
+  text("Gross Profit", gap, 337);
+  text("Net Profit", gap, 387);
   textAlign(RIGHT);
-  text(dollarFormat(grossProfit), uiX - 10, 340);
+  text(dollarFormat(grossProfit), uiX - gap, 340);
   netProfit = grossProfit - totalExpenses;
-  text(dollarFormat(netProfit), uiX - 10, 392);
-  text(dollarFormat(netProfit), uiX - 10, 392);
-  text(dollarFormat(netProfit), uiX - 9, 390);
-  text(dollarFormat(netProfit), uiX - 8, 390);
-  if  (netProfit > 0)  { //setting fill color for profit, red if negative, green if position, grey if break even
-    fill(0,230,0);
-  }
-  else  if  (netProfit < 0)  {
-    fill(230,0,0);
+  if  (detail.equals("High"))  {
+    text(dollarFormat(netProfit), uiX - gap, 392);
+    text(dollarFormat(netProfit), uiX - gap, 392);
+    text(dollarFormat(netProfit), uiX - (gap-1), 390);
+    text(dollarFormat(netProfit), uiX - (gap-2), 390);
+    if  (netProfit > 0)  { //setting fill color for profit, red if negative, green if position, grey if break even
+      fill(0,255,0);
+    }
+    else  if  (netProfit < 0)  {
+      fill(255,0,0);
+    }
+    else  {
+      fill(45);
+    }
+    text(dollarFormat(netProfit), uiX - gap, 390);
+    text(dollarFormat(netProfit), uiX - (gap+1), 390);
   }
   else  {
     fill(45);
+    text(dollarFormat(netProfit), uiX - gap, 390);
   }
-  text(dollarFormat(netProfit), uiX - 10, 390);
-  text(dollarFormat(netProfit), uiX - 11, 390);
   
   // Warehouse rating
   fill(45);
@@ -121,7 +131,7 @@ void  drawSim() {
     shelf.drawMe();
   }
   
-  tally();
+  //tally();
   ruler();
 }
 

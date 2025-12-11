@@ -90,5 +90,5 @@ void  tally()  {
 void  ruler()  {
   noStroke();
   fill(255);
-  square(mouseX, mouseY, 10);
+  square(mouseX, mouseY, 50);
 }
