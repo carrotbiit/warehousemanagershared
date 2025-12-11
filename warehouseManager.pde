@@ -28,7 +28,7 @@ float minPackageCost = 10;
 float maxPackageCost = 100;
 
 // Shelf variables
-int  shelfCapacity = 5;  //the number of packages a shelf can store
+int  shelfCapacity = 7;  //the number of packages a shelf can store
 
 // Order and delivery variables
 int framesBetweenOrders = 30 * 60 * 5;
@@ -54,7 +54,7 @@ float  uiX = 200;  //the x coordinate of the right side/end of the UI
 
 // Graphic simulation variables
 float  spacer = 10;  //spacer for drawing
-float  sW = 70;  //shelf width
+float  sW = 10 * shelfCapacity;  //shelf width
 float  sH = 10;  //shelf height
 int truckHeight = 10;
 int truckWidth = 20;

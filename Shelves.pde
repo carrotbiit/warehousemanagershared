@@ -44,7 +44,7 @@ class  Shelf  {
         stroke(  red(col)*0.5, green(col)*0.5, blue(col)*0.5  );
       }
       
-      square(this.pos.x - ((-i+2) * sH), this.pos.y, sH -2);
+      square(this.pos.x - ((-i+int(shelfCapacity/2)) * sH), this.pos.y, sH);
     
     }
     
