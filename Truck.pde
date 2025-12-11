@@ -146,6 +146,7 @@ class Truck {
       this.roadOn = null;
       this.position = restPosition.copy();
       this.load = 0; //test
+      this.numCurWorkers = 0;
     }
    }
    
