@@ -43,172 +43,6 @@ class  Worker  {
     
   }
   
-  //void  update()  {
-    
-  //  totalWageExpense += simSpeed * wage / 20000;
-    
-  //  //general algo idea
-  //  //if we are Waiting
-  //    //check if the incoming truck needs to be unloaded and its num cur workers is low
-  //      //if it needs workers work on it and set its target as such
-  //      //else it doesnt need workers
-  //        //check if the outgoing trucks need workers
-  //          //if they do, they find the packages need and begin loading, or wait if there are none
-  //          //if they dont, just wait
-  //  //else
-  //    //continue doing whatever you were doing (move)
-    
-  //  if  (this.state.equals("Waiting"))  {
-      
-      
-      
-  //    //Work on outgoing
-  //    //else  {
-  //    for  (Truck t: trucks)  {  //Loop through trucks
-  //      if  (  t.state.equals("Stationary")  &&  t.numCurWorkers < 2)  {
-  //        for  (Shelf s: Shelves)  {  //Loop through shelves
-  //          for  (  int i = 0 ; i < s.stored.size() ; i++  )  {  //Loop through packages
-              
-  //            if  (  t.canFit(  s.stored.get(i)  )  &&  !s.claimed.get(i)  )  {  //Valid package, weight & not claimed
-  //              this.targPack = s.stored.get(i);
-                
-  //              this.targetShelf(s, i);
-  //              this.setVelTarget();
-  //              this.state = "Retrieving";  //set state
-                
-  //              this.targTruck = t;
-  //              //targTruck.loadPackage(this.targPack);
-
-  //              //println(s.claimed.get(i));
-                
-  //              t.numCurWorkers += 1;  //update how many workers are working on the trucks
-                
-  //              break;  //Stop searching
-  //            }
-              
-  //            // The truck will leave if it cannot hold any more packages
-  //            else if (!t.canFit(s.stored.get(i)) && !t.state.equals("Waiting To Leave") && !queue.contains(t)) {
-  //             queue.add(t);
-  //             t.state = "Waiting to Leave";
-  //             // this.targInd = 0;
-  //             this.targTruck = null;
-  //             //break;
-  //            }
-         
-              
-  //          }
-            
-  //          if  (  this.state.equals("Retrieving")  )  {
-  //            break;  //Stop searching
-  //          }
-            
-  //        }
-  //      }
-        
-  //      if  (  this.state.equals("Retrieving")  )  {
-  //            break;  //Stop searching
-  //          }
-        
-  //    }
-      
-  //    //println(this.state);
-      
-  //    //if  (this.targTruck != null)  {
-  //    if  (  this.state.equals("Waiting")  )  {
-  //      //Work on incoming
-  //      if  (  incomingTruck.state.equals("Unloading")  &&  incomingTruck.numCurWorkers < 5  &&  incomingTruck.numCurWorkers < incomingTruck.packages.get(0).size()  )  {
-  //        this.targetIncoming();
-  //        this.setVelTarget();
-  //        this.state = "Unloading";  //set state
-  //        incomingTruck.numCurWorkers += 1;  //update how many workers are working on the trucks
-          
-  //        this.targTruck = null;
-          
-  //      }
-  //    }
-      
-
-  //  }  //end of waiting
-    
-  //  else  {//is working
-      
-  //    //red circle target TESTER
-  //    //if  (this.pos.x != this.target.x)  {
-  //    //  fill(255,0,0);
-  //    //  circle(this.target.x, this.target.y, 4);
-  //    //}
-      
-      
-      
-  //    //move closer to target if if the next frame we dont reach it
-  //    if  (dist(this.pos.x, this.pos.y, this.target.x, this.target.y) > this.vel.copy().mult(simSpeed).mag())  {
-  //      this.pos.add(this.vel.copy().mult(simSpeed));
-  //    }
-      
-  //    else  {  //if we are close enough to target set our position to it
-  //      this.pos = this.target.copy();
-        
-  //      //Unloading
-  //      if  (  this.state.equals("Unloading")  )  {
-  //        this.holding = incomingTruck.packages.get(0).get(0);
-  //        incomingTruck.packages.get(0).remove(0);
-  //        incomingTruck.numCurWorkers -= 1;
-  //        this.state = "Storring";
-          
-  //        this.targetShelf();
-  //        this.setVelTarget();
-          
-  //      }
-        
-  //      //Store in shelf
-  //      else  if  (  this.state.equals("Storring")  )  {
-  //        if  (  Shelves.get(targInd).stored.size()  <  5  )  {
-  //          Shelves.get(targInd).stored.add(this.holding);
-  //          Shelves.get(targInd).claimed.add(false);
-  //          this.holding = null;
-  //          this.state = "Waiting";
-            
-  //          //println(Shelves.get(targInd).stored.size());
-  //        }
-  //        else  {
-  //          this.targetShelf();
-  //          this.setVelTarget();
-  //          //this.state = "Unloading";
-  //        }
-  //      }
-        
-  //      //Loading
-  //      else  if  (  this.state.equals("Loading")  )  {
-  //        targTruck.loadPackage(this.holding);
-  //        this.holding = null;
-  //        targTruck.numCurWorkers -= 1;
-  //        this.state = "Waiting";
-          
-  //        //targTruck.leaveWarehouse();
-          
-  //      }
-        
-  //      //Retrieving
-  //      else  if  (  this.state.equals("Retrieving")  )  {
-  //        this.holding = this.targPack;
-  //        Shelves.get(targInd).claimed.remove(  Shelves.get(targInd).stored.indexOf(this.holding)  );
-  //        Shelves.get(targInd).stored.remove(  this.holding  );
-          
-  //        this.state = "Loading";
-          
-  //        //was in loading
-  //        targetOutgoing(targTruck);
-  //        this.setVelTarget();
-          
-  //      }
-        
-  //    }
-      
-      
-      
-  //  }
-  //}
-  
   //look if an outgoing truck can hold a package on the incoming truck           check
   //look if an outgoing truck can hold a package that is on the shelves          check
   //
@@ -276,7 +110,9 @@ class  Worker  {
         else  if  (  this.state.equals("Loading")  )  {
           this.targTruck.loadPackage(  this.holding  );
           this.holding = null;
+          //println("\tBEFORE ", this.targTruck.numCurWorkers);
           this.targTruck.numCurWorkers -= 1;
+          //println("\tAFTER ", this.targTruck.numCurWorkers);
           this.state = "Waiting"; 
         }  //end of loading
         
@@ -347,13 +183,13 @@ class  Worker  {
         //else?
         //CAN'T directly unload incoming onto outgoing
         
-        else  if  (  t.state.equals("Stationary")  )  {
+        else  if  (  t.state.equals("Stationary")  &&  this.state.equals("Waiting")  )  {
           //println("  shelf loop was run for outgoing", frameCount);
           //Loop shelves
           for  (Shelf s: Shelves)  {
             for  (int i = 0; i < s.stored.size(); i++)  {
               Package p = s.stored.get(i);
-              println(p.weight, t.load, t.maxCapacity, t.canFit(p));
+              println(!t.canFit(p),  !t.state.equals("Waiting To Leave"),  !queue.contains(t),  t.numCurWorkers);
               if  (  !p.claimed  &&  t.canFit(p)  &&  t.state.equals("Stationary")  )  {  //found an unclaimed AND valid package for truck t from SHELF S
                 this.targetShelf(s);
                 this.setVelTarget();
@@ -367,17 +203,19 @@ class  Worker  {
                 break;
               }
               else  if  (  !t.canFit(p)  &&  !t.state.equals("Waiting To Leave")  &&  !queue.contains(t)  &&  t.numCurWorkers == 0)  {
-                println("sent truck to leave", trucks.indexOf(t), frameCount);
+                //println("sent truck to leave", trucks.indexOf(t), frameCount);
                 queue.add(t);
                 t.state = "Waiting to Leave";
                 //break;
               }
-              
-              if  (  this.state.equals("Retrieving")  )  {  //Leave if we found a valid package
-                break;
-              }
+              //println("made it this far", frameCount);
               
             }
+            
+            if  (  this.state.equals("Retrieving")  )  {  //Leave if we found a valid package
+              break;
+            }
+            
           }
         }
         

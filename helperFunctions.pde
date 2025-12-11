@@ -72,3 +72,16 @@ void createOrders() {
     allOrdered.add(item);
   }
 }
+
+void  tally()  {
+  int  tally = 0;
+  for  (Truck t: trucks)  {
+    tally += t.numCurWorkers;
+  }
+  
+  if  (tally > numWorkers)  {
+    println("  NUM CUR WORKERS ERROR  ");
+    noLoop();
+  }
+  
+}

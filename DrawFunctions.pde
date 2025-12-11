@@ -94,4 +94,5 @@ void  drawSim() {
   //println( "num workers " , incomingTruck.numCurWorkers  );
   //println( "num packages " , incomingTruck.packages.get(0).size());
   //println( "incoming state ", incomingTruck.state);
+  tally();
 }
