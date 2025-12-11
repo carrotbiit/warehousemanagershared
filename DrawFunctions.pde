@@ -70,7 +70,7 @@ void  drawSim() {
   if  (showTrucks)  {
     for (Truck truck : trucks) {
       truck.drawMe();
-      text(truck.numCurWorkers, truck.position.x - 30, truck.position.y);
+      text(truck.numCurWorkers, truck.position.x - 10, truck.position.y);
       println(truck.state, truck.load, truck.maxCapacity, truck.numCurWorkers);
     }
     
