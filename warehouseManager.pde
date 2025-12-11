@@ -70,7 +70,7 @@ String detail = "High";
 float  curTime = 0;  //the current time value
 float  simSpeed = 5;  // delta time
 
-int[] intChanges = {numTrucks, numWorkers, numHouses, numShelves, packageOutRate, truckMaxLoad};
+int[] intChanges = {numTrucks, numWorkers, numHouses, numShelves, packageOutRate, truckMaxLoad, numStreets};
 float[] floatChanges = {wage, gasPrice};
 
 // Object variables

@@ -83,6 +83,10 @@ public void detailDropClicked(GDropList source, GEvent event) { //_CODE_:detailD
   detail = detailDrop.getSelectedText();
 } //_CODE_:detailDrop:359832:
 
+public void numStreetsSliderChanged(GCustomSlider source, GEvent event) { //_CODE_:numStreetsSlider:809040:
+  intChanges[6] = numStreetsSlider.getValueI();
+} //_CODE_:numStreetsSlider:809040:
+
 
 
 // Create all the GUI controls. 
@@ -92,17 +96,17 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  controls = GWindow.getWindow(this, "Control Window", 0, 0, 400, 350, JAVA2D);
+  controls = GWindow.getWindow(this, "Control Window", 0, 0, 400, 400, JAVA2D);
   controls.noLoop();
   controls.setActionOnClose(G4P.KEEP_OPEN);
   controls.addDrawHandler(this, "win_draw1");
-  numTrucksSlider = new GCustomSlider(controls, 25, 62, 100, 50, "blue18px");
+  numTrucksSlider = new GCustomSlider(controls, 25, 58, 100, 45, "blue18px");
   numTrucksSlider.setShowValue(true);
   numTrucksSlider.setLimits(5, 1, 10);
   numTrucksSlider.setNumberFormat(G4P.INTEGER, 0);
   numTrucksSlider.setOpaque(false);
   numTrucksSlider.addEventHandler(this, "numTrucksChanged");
-  numEmployees = new GCustomSlider(controls, 25, 138, 100, 50, "blue18px");
+  numEmployees = new GCustomSlider(controls, 25, 125, 100, 45, "blue18px");
   numEmployees.setShowValue(true);
   numEmployees.setLimits(10, 1, 20);
   numEmployees.setNumberFormat(G4P.INTEGER, 0);
@@ -129,7 +133,7 @@ public void createGUI(){
   pauseButton = new GButton(controls, 25, 6, 100, 30);
   pauseButton.setText("Pause/Unpause");
   pauseButton.addEventHandler(this, "pauseButtonClicked");
-  truckLabel = new GLabel(controls, 25, 42, 100, 20);
+  truckLabel = new GLabel(controls, 25, 38, 100, 20);
   truckLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   truckLabel.setText("Trucks");
   truckLabel.setOpaque(false);
@@ -137,11 +141,11 @@ public void createGUI(){
   speedLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   speedLabel.setText("Simulation Speed");
   speedLabel.setOpaque(false);
-  employeesLabel = new GLabel(controls, 25, 118, 100, 20);
+  employeesLabel = new GLabel(controls, 25, 105, 100, 20);
   employeesLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   employeesLabel.setText("Employees");
   employeesLabel.setOpaque(false);
-  houseLabel = new GLabel(controls, 25, 194, 100, 20);
+  houseLabel = new GLabel(controls, 25, 170, 100, 20);
   houseLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   houseLabel.setText("Houses");
   houseLabel.setOpaque(false);
@@ -174,13 +178,13 @@ public void createGUI(){
   packageRequestSpeedSlider.setNumberFormat(G4P.INTEGER, 0);
   packageRequestSpeedSlider.setOpaque(false);
   packageRequestSpeedSlider.addEventHandler(this, "packageRequestSliderChanged");
-  numShelvesSlider = new GCustomSlider(controls, 25, 290, 100, 50, "blue18px");
+  numShelvesSlider = new GCustomSlider(controls, 25, 258, 100, 45, "blue18px");
   numShelvesSlider.setShowValue(true);
   numShelvesSlider.setLimits(6, 1, 10);
   numShelvesSlider.setNumberFormat(G4P.INTEGER, 0);
   numShelvesSlider.setOpaque(false);
   numShelvesSlider.addEventHandler(this, "numShelvesSliderChanged");
-  shelvesLabel = new GLabel(controls, 25, 270, 100, 20);
+  shelvesLabel = new GLabel(controls, 25, 236, 100, 20);
   shelvesLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   shelvesLabel.setText("Shelves");
   shelvesLabel.setOpaque(false);
@@ -204,7 +208,7 @@ public void createGUI(){
   maxLoadLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   maxLoadLabel.setText("Maximum Truck Load");
   maxLoadLabel.setOpaque(false);
-  numHousesSlider = new GCustomSlider(controls, 25, 214, 100, 50, "blue18px");
+  numHousesSlider = new GCustomSlider(controls, 25, 190, 100, 45, "blue18px");
   numHousesSlider.setShowValue(true);
   numHousesSlider.setLimits(3, 1, 5);
   numHousesSlider.setNumberFormat(G4P.INTEGER, 0);
@@ -217,6 +221,16 @@ public void createGUI(){
   detailLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   detailLabel.setText("Graphics Quality");
   detailLabel.setOpaque(false);
+  numStreetsSlider = new GCustomSlider(controls, 25, 326, 100, 45, "blue18px");
+  numStreetsSlider.setShowValue(true);
+  numStreetsSlider.setLimits(9, 1, 9);
+  numStreetsSlider.setNumberFormat(G4P.INTEGER, 0);
+  numStreetsSlider.setOpaque(false);
+  numStreetsSlider.addEventHandler(this, "numStreetsSliderChanged");
+  numStreetsLabel = new GLabel(controls, 25, 305, 100, 20);
+  numStreetsLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  numStreetsLabel.setText("Streets");
+  numStreetsLabel.setOpaque(false);
   controls.loop();
 }
 
@@ -248,3 +262,5 @@ GLabel maxLoadLabel;
 GCustomSlider numHousesSlider; 
 GDropList detailDrop; 
 GLabel detailLabel; 
+GCustomSlider numStreetsSlider; 
+GLabel numStreetsLabel; 

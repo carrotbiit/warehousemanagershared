@@ -6,6 +6,8 @@ void applyChanges(){
   numShelves = intChanges[3];
   packageOutRate = intChanges[4];
   truckMaxLoad = intChanges[5];
+  numStreets = intChanges[6];
+  
   wage = floatChanges[0];
   gasPrice = floatChanges[1];
   
