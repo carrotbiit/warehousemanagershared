@@ -24,7 +24,9 @@ class  Shelf  {
     
     if (!detail.equals("Low")) {
       if  (detail.equals("High"))  {
-        text(this.stored.size() , this.pos.x + 50, this.pos.y + (sH/2));
+        float  colourVal = lerp(255,0,  float( this.stored.size() ) / 7.0  );
+        fill(255, colourVal, colourVal);
+        text(this.stored.size() , this.pos.x - 55, this.pos.y + (sH/2));
       }
 
       //drawing packages on the shelf

@@ -55,7 +55,9 @@ class Truck {
 
   // Draw the number of packages in the truck
   void drawPackageCount() {
-    fill(255);
+    
+    float  colourVal = lerp(255,0,  this.totalPackageCount/(this.maxCapacity/(minPackageWeight + (maxPackageWeight-minPackageWeight)/2))  );
+    fill(colourVal, colourVal, 255);
     textAlign(CENTER);
     textSize(20);
     text(this.totalPackageCount , this.position.x + 10, this.position.y);
