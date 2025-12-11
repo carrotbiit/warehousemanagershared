@@ -57,8 +57,8 @@ void  loadWorkers()  {
   
   for  (int i = 0; i < xN; i ++)  {
     for  (int j = 0; (j*xN) + i < numWorkers ; j++)  {
-      x = j * 10;
-      y = i * 10;
+      x = j * 12;
+      y = i * 25;
       
       //centering to the warehuse
       x += Warehouse.pos.x - (5 * xN);
