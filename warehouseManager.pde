@@ -43,6 +43,7 @@ float averageRating = 0;
 // Income and expense variables
 float  wage = 20;  //employee wage
 float  gasPrice = 1.3;  //price of gas
+float gasPriceDT = truckSpeed * gasPrice / 200; // How much gas costs per frame
 float  totalWageExpense = 0;
 float  totalGasExpense = 0;
 float totalExpenses;
