@@ -4,6 +4,11 @@ float  roundAny(float  num, int n)  {
   return  float(round(num * p))/p;
 }
 
+// Formatting for expenses and income
+String dollarFormat(float value) {
+  return "\n$ " + nfc(roundAny( value, 2), 2);
+}
+
 // Computes midpoint between two values 
 // Used for road initialization
 float midpoint(float point1, float point2) {

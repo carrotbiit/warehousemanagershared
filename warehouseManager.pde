@@ -45,6 +45,7 @@ float  wage = 20;  //employee wage
 float  gasPrice = 1.3;  //price of gas
 float  totalWageExpense = 0;
 float  totalGasExpense = 0;
+float totalExpenses;
 float grossProfit = 0;
 float netProfit = 0;
 
