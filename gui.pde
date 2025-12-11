@@ -223,7 +223,7 @@ public void createGUI(){
   detailLabel.setOpaque(false);
   numStreetsSlider = new GCustomSlider(controls, 25, 326, 100, 45, "blue18px");
   numStreetsSlider.setShowValue(true);
-  numStreetsSlider.setLimits(9, 1, 9);
+  numStreetsSlider.setLimits(9, 2, 9);
   numStreetsSlider.setNumberFormat(G4P.INTEGER, 0);
   numStreetsSlider.setOpaque(false);
   numStreetsSlider.addEventHandler(this, "numStreetsSliderChanged");

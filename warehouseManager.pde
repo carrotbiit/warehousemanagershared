@@ -61,6 +61,7 @@ int truckWidth = 20;
 int roadWidth = 20;
 int laneWidth = roadWidth / 2;
 int laneMarkingWidth = 4;
+int laneSpaceInterval = 4 * laneMarkingWidth;
 
 // Simulation settings (pause, show, etc.)
 boolean  isPaused = false;  //if the simulation is paused or not
