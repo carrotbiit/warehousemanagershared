@@ -268,6 +268,8 @@ class  Worker  {
           //Shelves.get(targShelf).capacity -= 1;
           this.holding = null;
           this.state = "Waiting";
+          this.targTruck = null;
+          this.targShelf = -1;
         }  //end of storring
         
         //Loading
@@ -368,7 +370,7 @@ class  Worker  {
                 println("sent truck to leave");
                 queue.add(t);
                 t.state = "Waiting to Leave";
-                break;
+                //break;
               }
               
               if  (  this.state.equals("Retrieving")  )  {  //Leave if we found a valid package
