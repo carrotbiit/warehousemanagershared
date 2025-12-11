@@ -314,7 +314,7 @@ class  Worker  {
       if  (  t.state.equals("Stationary")  )  {
         
         //check incoming                                                           //careful ||||||
-        if  (  incomingTruck.state.equals("Unloading")  &&  incomingTruck.numCurWorkers < 5  )  {//&&  incomingTruck.numCurWorkers < incomingTruck.packages.get(0).size())  {
+        if  (  incomingTruck.state.equals("Unloading")  ){//&&  incomingTruck.numCurWorkers < 5  )  {//&&  incomingTruck.numCurWorkers < incomingTruck.packages.get(0).size())  {
           //loop through packages on the incoming
           for  (int i = 0; i < incomingTruck.packages.get(0).size(); i++)  {
             Package p = incomingTruck.packages.get(0).get(i);  //setting
@@ -367,7 +367,7 @@ class  Worker  {
                 break;
               }
               else  if  (  !t.canFit(p)  &&  !t.state.equals("Waiting To Leave")  &&  !queue.contains(t)  &&  t.numCurWorkers == 0)  {
-                println("sent truck to leave");
+                //println("sent truck to leave");
                 queue.add(t);
                 t.state = "Waiting to Leave";
                 //break;
@@ -390,7 +390,7 @@ class  Worker  {
   //Looking to unload the incoming truck
   void  searchIncoming()  {
     //if  (  incomingTruck.state.equals("Unloading")  &&  incomingTruck.numCurWorkers < 4  &&  incomingTruck.numCurWorkers < incomingTruck.packages.get(0).size())  {
-    if  (  incomingTruck.state.equals("Unloading")  &&  incomingTruck.numCurWorkers < 5  )  {
+    if  (  incomingTruck.state.equals("Unloading")  ){//&&  incomingTruck.numCurWorkers < 5  )  {
 
       for  (int i = 0; i < incomingTruck.packages.get(0).size(); i++)  {
         Package p = incomingTruck.packages.get(0).get(i);  //setting
