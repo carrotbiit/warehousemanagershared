@@ -3,20 +3,27 @@ void drawUI() {
   noStroke();
 
   // UI rectangle
-  fill(200);
   rectMode(CORNER);
+  fill(170);
   rect(0, 0, uiX, height);
+  fill(200);
+  rect(3, 3, uiX-6, height-6);
+  
+  // Textboxes
+  fill(220);
+  rectMode(CENTER);
+  rect(uiX/2,  55, 165, 83, 10);
 
   // Warehouse Manager title
-  fill(0);
+  fill(45);
   textSize(30);
   textAlign(CENTER);
   text("Warehouse", uiX/2, 50);
   text("Manager", uiX/2 - 16, 80);
-  fill(0);
+  fill(45);
   textSize(10);
   textAlign(CENTER);
-  text("v 6.7", uiX/2 + 65, 85);
+  text("v 6.7", uiX/2 + 60, 80);
 
   // Number of trucks and employees
   textSize(18);
@@ -45,7 +52,8 @@ void drawUI() {
   
   // Warehouse rating
   textAlign(CENTER);
-  text("Rating: " + nf(roundAny(averageRating, 2), 0, 2) + "/5", uiX / 2, 460);
+  //text("\u2B50",uiX/2,height/2);
+  text("Rating: " + nf(roundAny(averageRating, 2), 0, 2) + "/5", uiX / 2, 480);
 }
 
 
@@ -97,4 +105,9 @@ void  drawSim() {
   
   tally();
   ruler();
+}
+
+//draw star
+void  drawStar()  {
+  
 }
