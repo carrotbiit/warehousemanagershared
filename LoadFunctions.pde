@@ -2,7 +2,7 @@
 void loadRoads() {
   // Variable declarations
   float x;
-  float spacing = height / (numStreets + 1);
+  float spacing = height / float(numStreets + 1);
   float y = spacing;
   
   // Add the auxillary roads
