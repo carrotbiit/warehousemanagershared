@@ -52,7 +52,18 @@ void drawUI() {
   textAlign(RIGHT);
   text(dollarFormat(grossProfit), uiX - gap, 340);
   netProfit = grossProfit - totalExpenses;
+  if  (netProfit > 0)  {
+    fill(0,110,0);
+    textSize(20);
+    text(dollarFormat(netProfit), uiX - gap+1, 390);
+    text(dollarFormat(netProfit), uiX - gap+2, 390);
+    fill(0,250,0);
+  }
+  else  {
+    fill(250,0,0);
+  }
   text(dollarFormat(netProfit), uiX - gap, 390);
+  textSize(18);  
   
   // Warehouse rating
   fill(45);
