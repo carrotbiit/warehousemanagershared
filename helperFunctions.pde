@@ -48,8 +48,7 @@ void reset(){
   loadTrucks();
   
   // Make the user see the affected changes
-  drawSim();
-  drawUI();
+  redraw();
 }
 
 // Create orders on a time interval
