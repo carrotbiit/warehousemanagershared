@@ -47,12 +47,7 @@ void reset(){
 
 // Create orders on a time interval
 void createOrders() {
-  // Variable declarations
-  House house;
   Package item;
-  color colour;
-  float weight;
-  float profit;
   
   // Add packages to truck
   if (incomingTruck.state.equals("Stationary") && !allOrdered.isEmpty()) {
