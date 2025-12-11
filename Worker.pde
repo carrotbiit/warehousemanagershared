@@ -57,9 +57,7 @@ class  Worker  {
       this.searchOutgoing();
     }
     if  (  this.state.equals("Waiting")  )  {  //We couldn't find any outgoing trucks to load
-      //println("searching incoming", frameCount);
       this.searchIncoming();
-      //println(  this.state.equals("Waiting")  );
     }
     
     
@@ -96,10 +94,8 @@ class  Worker  {
         
         //Store in shelf
         else  if  (  this.state.equals("Storring")  )  {
-          //println(  Shelves.get(targShelf).capacity  );
           this.holding.claimed = false;
           Shelves.get(targShelf).stored.add(  this.holding  );
-          //Shelves.get(targShelf).capacity -= 1;
           this.holding = null;
           this.state = "Waiting";
           this.targTruck = null;
@@ -110,9 +106,7 @@ class  Worker  {
         else  if  (  this.state.equals("Loading")  )  {
           this.targTruck.loadPackage(  this.holding  );
           this.holding = null;
-          //println("\tBEFORE ", this.targTruck.numCurWorkers);
           this.targTruck.numCurWorkers -= 1;
-          //println("\tAFTER ", this.targTruck.numCurWorkers);
           this.state = "Waiting"; 
         }  //end of loading
         
@@ -123,10 +117,6 @@ class  Worker  {
           this.holding.claimed = true; //false? i dont think it matters
           Shelves.get(targShelf).capacity += 1;
           this.targShelf = -1;
-          
-          
-          //Shelves.get(targInd).claimed.remove(  Shelves.get(targInd).stored.indexOf(this.holding)  );
-          //Shelves.get(targInd).stored.remove(  this.holding  );
           
           this.state = "Loading";
           
@@ -164,7 +154,6 @@ class  Worker  {
               t.load += p.weight;  //**********************************************
               t.numCurWorkers += 1;
               p.claimed = true;
-              //println(  trucks.indexOf(t), t.state  ,  frameCount);
               break;
             }
             else  if  (  !t.canFit(p)  &&  !t.state.equals("Waiting To Leave")  &&  !queue.contains(t)  &&  t.numCurWorkers == 0)  {
@@ -179,12 +168,10 @@ class  Worker  {
         if  (this.state.equals("Unloading"))  {
           break;
         }
-        //println("code was run", frameCount);
-        //else?
+
         //CAN'T directly unload incoming onto outgoing
         
         else  if  (  t.state.equals("Stationary")  &&  this.state.equals("Waiting")  )  {
-          //println("  shelf loop was run for outgoing", frameCount);
           //Loop shelves
           for  (Shelf s: Shelves)  {
             for  (int i = 0; i < s.stored.size(); i++)  {
@@ -203,17 +190,14 @@ class  Worker  {
                 break;
               }
               else  if  (  !t.canFit(p)  &&  !t.state.equals("Waiting To Leave")  &&  !queue.contains(t)  &&  t.numCurWorkers == 0)  {
-                //println("sent truck to leave", trucks.indexOf(t), frameCount);
                 queue.add(t);
                 t.state = "Waiting to Leave";
-                //break;
               }
-              //println("made it this far", frameCount);
               
             }
             
             if  (  this.state.equals("Retrieving")  )  {  //Leave if we found a valid package
-              break;
+                break;
             }
             
           }
@@ -235,9 +219,6 @@ class  Worker  {
         
         if  (  !p.claimed  )  {  //Unclaimed package on incoming
           for  (Shelf s: Shelves)  {
-            //println();
-            //println(Shelves.indexOf(s));
-            //println(s.capacity);
             if  (  s.capacity > 0  )  {  //The shelf can store an additional package
               s.capacity -= 1;  //immediately decrease so no other workers try to use it
               this.targetIncoming();
@@ -276,36 +257,17 @@ class  Worker  {
     this.target.x += 10;
   }
   
-  //Sets target to closest availible shelf, set targInd
-  //void  targetShelf()  {
-  //  for  (Shelf s: Shelves)  {
-  //    //Has room for package
-  //    if  (s.stored.size() < 5)  {
-  //      this.target = s.pos.copy();
-  //      this.target.y -= sH;
-  //      this.target.x += random(-sW/2, sW/2);
-  //      this.targInd = Shelves.indexOf(s);
-        
-  //      break;
-  //    }
-  //  }
-  //}
-  
   void  targetShelf(int  i)  {
     this.target = Shelves.get(i).pos.copy();
     this.target.y -= sH;
     this.target.x += random(-sW/2, sW/2);
   }
   
-  void  targetShelf(Shelf s)  {  //idk if this works
+  void  targetShelf(Shelf s)  {
     this.target = s.pos.copy();
     this.target.y -= sH;
     this.target.x += random(-sW/2, sW/2);
     this.targShelf = Shelves.indexOf(s);
-    
-    //Shelves.get( Shelves.indexOf(s) ).claimed.set(index, true);
-    
-    //println("\t", s.claimed);
     
   }
   
