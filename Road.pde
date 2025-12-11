@@ -87,7 +87,7 @@ class Road {
     } else { // Draw the road lane markings if the road is vertical
       x = this.center.x;
       y = this.laneStart;
-      for (int count = 1; count < numLanes; count++) {
+      for (int count = 0; count < numLanes; count++) {
         rect(x, y, 1, laneMarkingWidth);
         y += laneSpaceInterval;
       }
