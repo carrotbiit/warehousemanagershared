@@ -87,6 +87,7 @@ void  tally()  {
   
 }
 
+//Pixel ruler to aid GUI creation
 void  ruler()  {
   noStroke();
   fill(255);

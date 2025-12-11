@@ -132,7 +132,7 @@ void  drawSim() {
   }
   
   //tally();
-  ruler();
+  //ruler();
 }
 
 //draw star
