@@ -216,7 +216,7 @@ class Truck {
       rect(this.position.x, this.position.y, truckHeight, truckWidth);
     }
     
-    if  (this.state.equals("Stationary") && !detail.equals("low"))  {
+    if  (this.state.equals("Stationary") && !detail.equals("Low"))  {
       drawPackageCount();
     }
   }
