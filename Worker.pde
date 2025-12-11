@@ -28,18 +28,40 @@ class  Worker  {
     
     noStroke();
     
+    if  (detail.equals("High")) {
+      strokeWeight(2);
+    }
+    
+    if  (this.holding != null)  {
+      fill(holding.colour);
+      stroke(  red(holding.colour)*0.5, green(holding.colour)*0.5, blue(holding.colour)*0.5  );
+      if  (detail.equals("Medium")) {
+        noStroke();
+      }
+      square(this.pos.x, this.pos.y + 8, 8);
+    }
+    
+    noStroke();
+    
     if  (  this.state.equals("Waiting")  )  {
-      fill(255,0,0);
+      fill(0,0,255);
     }
     else  {
       fill(0,255,0);
     }
-    circle(this.pos.x, this.pos.y, 8);
     
-    if  (this.holding != null)  {
-      fill(holding.colour);
-      square(this.pos.x, this.pos.y + 6, 6);
+    if (detail.equals("High")) {
+      if  (  this.state.equals("Waiting")  )  {
+        stroke(0,0,160);
+      }
+      else  {
+        stroke(0,160,0);
+      }
+      strokeWeight(2);
     }
+      
+    circle(this.pos.x, this.pos.y, 10);
+    
     
   }
   

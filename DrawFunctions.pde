@@ -60,7 +60,16 @@ void  drawSim() {
   Warehouse.drawMe();
 
   noStroke();
-
+  
+  //draw the workers
+  if  (showEmployees)  {
+    for  (Worker worker : Workers) {
+      worker.drawMe();
+    }
+  }
+  
+  noStroke();
+  
   //draw the houses
   for (House house : allHouses) {
     house.drawMe();
@@ -79,13 +88,6 @@ void  drawSim() {
   //draw the shelves
   for (Shelf shelf : Shelves) {
     shelf.drawMe();
-  }
-
-  //draw the workers
-  if  (showEmployees)  {
-    for  (Worker worker : Workers) {
-      worker.drawMe();
-    }
   }
   
   tally();

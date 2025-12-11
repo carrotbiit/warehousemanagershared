@@ -25,16 +25,25 @@ class  Shelf  {
     
     fill(255);
     textAlign(CENTER);
-    //textSize(14);
-    //text(Shelves.indexOf(this) , this.pos.x, this.pos.y + (sH/2));
     textSize(20);
-    text(this.stored.size() , this.pos.x + 50, this.pos.y + (sH/2));
-    textSize(20);
-    text(this.capacity , this.pos.x + 100, this.pos.y + (sH/2));
+    if (detail.equals("High")) {
+      text(this.stored.size() , this.pos.x + 50, this.pos.y + (sH/2));
+    }
+    //textSize(20);
+    //text(this.capacity , this.pos.x + 100, this.pos.y + (sH/2));
     
     noStroke();
     for  (int i = 0; i < this.stored.size(); i++)  {
-      fill(this.stored.get(i).colour);
+      
+      color  col = this.stored.get(i).colour;
+      
+      fill(col);
+      
+      if (detail.equals("High")) {
+        strokeWeight(2);
+        stroke(  red(col)*0.5, green(col)*0.5, blue(col)*0.5  );
+      }
+      
       square(this.pos.x - ((-i+2) * sH), this.pos.y, sH -2);
     
     }
