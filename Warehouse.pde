@@ -13,8 +13,6 @@ class  Warehouse  {
   
   //methods
   void  drawMe()  {
-    //strokeWeight(3);
-    //stroke(1);
     fill(170);
     rectMode(CENTER);
     rect(pos.x, pos.y, w, h);

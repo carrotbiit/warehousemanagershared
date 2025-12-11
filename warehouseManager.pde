@@ -6,22 +6,22 @@ import g4p_controls.*;
 // Number of objects
 int  numTrucks = 5;  //the number of shipping trucks
 int  numWorkers = 10;  //the number of employees
-int numHouses = 6;
+int numHouses = 6; //number of houses per street
 int  numShelves = 6;  //the number of shelves in the warehouse
-int numStreets = 9;
+int numStreets = 9; //number of streets
 
 // Truck variables
 int  truckMaxLoad = 100;  //maximum carrying capacity of the truck
-float truckSpeed = 0.1;
+float truckSpeed = 0.1; //truck speed
 
 // Worker variables
-float workerSpeed = 0.09;
+float workerSpeed = 0.09; //employee speed
 
 // House variables
-int houseDistance = 12;
-int houseSize = 10;
+int houseDistance = 12; //house spacing 
+int houseSize = 10; //house size
 
-// Package variables
+// Package variables, minimum, maximum weight, minimum, maximum profit when delivered
 float minPackageWeight = 5;
 float maxPackageWeight = 20;
 float minPackageCost = 10;
@@ -33,7 +33,7 @@ int  shelfCapacity = 7;  //the number of packages a shelf can store
 // Order and delivery variables
 int framesBetweenOrders = 30 * 60 * 5;
 int framesSinceOrder = framesBetweenOrders; // Make a package order at the very start
-int deliveryFrames = 270;
+int deliveryFrames = 270; //how long it takes for incoming truck to come
 int  packageOutRate = 10;  //the number of randomly generated packages requested from the warehouse per framesSinceOrder
 
 // Rating variables
@@ -70,6 +70,7 @@ String detail = "High";
 float  curTime = 0;  //the current time value
 float  simSpeed = 5;  // delta time
 
+//changes made in the gui go into these arrays before being applied
 int[] intChanges = {numTrucks, numWorkers, numHouses, numShelves, packageOutRate, truckMaxLoad, numStreets};
 float[] floatChanges = {wage, gasPrice};
 

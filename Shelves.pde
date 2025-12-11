@@ -13,12 +13,7 @@ class  Shelf  {
   
   //methods
   void  drawMe()  {
-    
-    //strokeWeight(2);
-    //stroke(100);
     rectMode(CENTER);
-    //fill(130);
-    //fill(0,0,255);
     fill(0,0);
     stroke(0,0,200);
     rect(pos.x, pos.y, sW, sH);
@@ -26,12 +21,12 @@ class  Shelf  {
     fill(255);
     textAlign(CENTER);
     textSize(20);
+    
     if (detail.equals("High")) {
       text(this.stored.size() , this.pos.x + 50, this.pos.y + (sH/2));
     }
-    //textSize(20);
-    //text(this.capacity , this.pos.x + 100, this.pos.y + (sH/2));
     
+    //drawing packages on the shelf
     noStroke();
     for  (int i = 0; i < this.stored.size(); i++)  {
       

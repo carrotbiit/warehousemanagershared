@@ -241,20 +241,4 @@ class Truck {
       }
     }
   }
-  
-  // Check if truck would collide
-  //boolean willCollide() {
-  //  for (Truck truck : trucks) {
-  //    if (truck == this || truck.state.equals("Stationary")) {
-  //      continue;
-  //    }
-  //    else if (isNear(this.position.x, truck.position.x + truck.velocity.x) && this.position.y == truck.position.y) {
-  //      return true;
-  //    }
-  //    else if (this.position.x == truck.position.x && isNear(this.position.y, truck.position.y + truck.velocity.y)) {
-  //      return true;
-  //    }
-  //  }
-  //  return false;
-  //}
 }

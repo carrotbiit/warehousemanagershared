@@ -19,72 +19,72 @@ synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:contr
 } //_CODE_:controls:710447:
 
 public void numTrucksChanged(GCustomSlider source, GEvent event) { //_CODE_:numTrucksSlider:938548:
-  intChanges[0] = numTrucksSlider.getValueI();
+  intChanges[0] = numTrucksSlider.getValueI(); //puts the gui change into the changes array to be applied
 } //_CODE_:numTrucksSlider:938548:
 
 public void numEmployeesChanged(GCustomSlider source, GEvent event) { //_CODE_:numEmployees:447170:
-  intChanges[1] = numEmployees.getValueI();
+  intChanges[1] = numEmployees.getValueI(); //puts the gui change into the changes array to be applied
 } //_CODE_:numEmployees:447170:
 
 public void simSpeedChanged(GCustomSlider source, GEvent event) { //_CODE_:simSpeedSlider:923879:
-  simSpeed = roundAny(simSpeedSlider.getValueF(), 2);
+  simSpeed = roundAny(simSpeedSlider.getValueF(), 2); // changes simSpeed variable
 } //_CODE_:simSpeedSlider:923879:
 
 public void employeeWageChanged(GCustomSlider source, GEvent event) { //_CODE_:employeeWage:992023:
-  floatChanges[0] = roundAny(employeeWage.getValueF(), 2);
+  floatChanges[0] = roundAny(employeeWage.getValueF(), 2); //puts the gui change into the changes array to be applied
 } //_CODE_:employeeWage:992023:
 
 public void resetButtonClicked(GButton source, GEvent event) { //_CODE_:resetButton:387224:
-  reset();
+  reset(); //resets simulation
 } //_CODE_:resetButton:387224:
 
 public void pauseButtonClicked(GButton source, GEvent event) { //_CODE_:pauseButton:520075:
-  if (isPaused) {
+  if (isPaused) { //if paused, unpaused
     loop();
-  } else {
+  } else { //if unpasued, pause
     noLoop();
   }
   isPaused = ! isPaused;
 } //_CODE_:pauseButton:520075:
 
 public void showTrucksClicked(GCheckbox source, GEvent event) { //_CODE_:showTrucksButton:861363:
-  showTrucks = showTrucksButton.isSelected();
+  showTrucks = showTrucksButton.isSelected(); //changes showTruck
 } //_CODE_:showTrucksButton:861363:
 
 public void showEmployeesClicked(GCheckbox source, GEvent event) { //_CODE_:showEmployeesButton:733093:
-  showEmployees = showEmployeesButton.isSelected();
+  showEmployees = showEmployeesButton.isSelected(); //changes showEmployees
 } //_CODE_:showEmployeesButton:733093:
 
 public void applyChangesClicked(GButton source, GEvent event) { //_CODE_:applyChanges:294084:
-  applyChanges();
+  applyChanges(); //applies changes
 } //_CODE_:applyChanges:294084:
 
 public void packageRequestSliderChanged(GCustomSlider source, GEvent event) { //_CODE_:packageRequestSpeedSlider:623162:
-  intChanges[4] = packageRequestSpeedSlider.getValueI();
+  intChanges[4] = packageRequestSpeedSlider.getValueI(); //puts the gui change into the changes array to be applied
 } //_CODE_:packageRequestSpeedSlider:623162:
 
 public void numShelvesSliderChanged(GCustomSlider source, GEvent event) { //_CODE_:numShelvesSlider:504992:
-  intChanges[3] = numShelvesSlider.getValueI();
+  intChanges[3] = numShelvesSlider.getValueI(); //puts the gui change into the changes array to be applied
 } //_CODE_:numShelvesSlider:504992:
 
 public void gasPriceSliderChanged(GCustomSlider source, GEvent event) { //_CODE_:gasPriceSlider:515156:
-  floatChanges[1] = roundAny(gasPriceSlider.getValueF(), 2);
+  floatChanges[1] = roundAny(gasPriceSlider.getValueF(), 2); //puts the gui change into the changes array to be applied
 } //_CODE_:gasPriceSlider:515156:
 
 public void maxLoadSliderChanged(GCustomSlider source, GEvent event) { //_CODE_:maxLoadSlider:946615:
-  intChanges[5] = maxLoadSlider.getValueI();
+  intChanges[5] = maxLoadSlider.getValueI(); //puts the gui change into the changes array to be applied
 } //_CODE_:maxLoadSlider:946615:
 
 public void numHousesSliderChanged(GCustomSlider source, GEvent event) { //_CODE_:numHousesSlider:744309:
-  intChanges[2] = numHousesSlider.getValueI() * 2;
+  intChanges[2] = numHousesSlider.getValueI() * 2; //puts the gui change into the changes array to be applied
 } //_CODE_:numHousesSlider:744309:
 
 public void detailDropClicked(GDropList source, GEvent event) { //_CODE_:detailDrop:359832:
-  detail = detailDrop.getSelectedText();
+  detail = detailDrop.getSelectedText(); //changes detail level
 } //_CODE_:detailDrop:359832:
 
 public void numStreetsSliderChanged(GCustomSlider source, GEvent event) { //_CODE_:numStreetsSlider:809040:
-  intChanges[6] = numStreetsSlider.getValueI();
+  intChanges[6] = numStreetsSlider.getValueI(); //puts the gui change into the changes array to be applied
 } //_CODE_:numStreetsSlider:809040:
 
 

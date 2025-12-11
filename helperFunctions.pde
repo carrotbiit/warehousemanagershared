@@ -73,6 +73,7 @@ void createOrders() {
   }
 }
 
+//debugging function, pauses the program if a mistake is detected
 void  tally()  {
   int  tally = 0;
   for  (Truck t: trucks)  {

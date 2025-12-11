@@ -55,6 +55,8 @@ class Road {
     float x, y;
     fill(255);
     rectMode(RADIUS);
+    
+    //if numstreets is 1, there is no need for the vertical road to be drawn
     if (orientation.equals("Horizontal") || numStreets == 1) {
       x = this.center.x - this.radiusWidth + 3 * laneMarkingWidth;
       y = this.center.y;
@@ -62,7 +64,7 @@ class Road {
         rect(x, y, laneMarkingWidth, 1);
         x += 4 * laneMarkingWidth;
       }
-    } else {
+    } else { //draw vertical road if there is more than one street
       x = this.center.x;
       y = this.center.y - this.radiusHeight + 3 * laneMarkingWidth;
       for (int count = 1; count < this.radiusHeight / (2 * laneMarkingWidth); count++) {
