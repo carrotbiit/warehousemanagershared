@@ -48,12 +48,31 @@ void drawUI() {
   textAlign(RIGHT);
   text(dollarFormat(grossProfit), uiX - 10, 340);
   netProfit = grossProfit - totalExpenses;
+  text(dollarFormat(netProfit), uiX - 10, 392);
+  text(dollarFormat(netProfit), uiX - 10, 391);
+  text(dollarFormat(netProfit), uiX - 9, 390);
+  text(dollarFormat(netProfit), uiX - 8, 390);
+  if  (netProfit > 0)  {
+    fill(0,230,0);
+  }
+  else  if  (netProfit < 0)  {
+    fill(230,0,0);
+  }
+  else  {
+    fill(45);
+  }
   text(dollarFormat(netProfit), uiX - 10, 390);
   
+  //this.averageRating = float(mouseX)/float(width) * 5;
+  
   // Warehouse rating
+  fill(45);
   textAlign(CENTER);
-  //text("\u2B50",uiX/2,height/2);
   text("Rating: " + nf(roundAny(averageRating, 2), 0, 2) + "/5", uiX / 2, 480);
+  for  (int i = 0; i < 5; i++)  {
+    drawStar(  new PVector(uiX/2 + ((i-2) * 36),  440),  i, 14);
+  }
+  
 }
 
 
@@ -108,6 +127,49 @@ void  drawSim() {
 }
 
 //draw star
-void  drawStar()  {
+void  drawStar(PVector  pos,  float  n,  float multiplier)  {
+  
+  //points for the star
+  PVector  p1 = new PVector(0,  -multiplier);
+  PVector  p2 = new PVector(0.224398 * multiplier,  0.308858 * -multiplier);
+  PVector  p3 = new PVector(0.951057 * multiplier,  0.308858 * -multiplier);
+  PVector  p4 = new PVector(0.363084 * multiplier,  0.117973 * multiplier);
+  PVector  p5 = new PVector(0.587785 * multiplier,  0.809017 * multiplier);
+  PVector  p6 = new PVector(0,  0.381769 * multiplier);
+  PVector  p7 = new PVector(0.587785 * -multiplier,  0.809017 * multiplier);
+  PVector  p8 = new PVector(0.363084 * -multiplier,  0.117973 * multiplier);
+  PVector  p9 = new PVector(0.951057 * -multiplier,  0.308858 * -multiplier);
+  PVector  p10 = new PVector(0.224398 * -multiplier,  0.308858 * -multiplier);
+  
+  //Outline
+  stroke(120,120,0);
+  strokeWeight(5);
+  triangle(p1.x  +  pos.x, p1.y  +  pos.y, p2.x  +  pos.x, p2.y  +  pos.y, p8.x  +  pos.x, p8.y  +  pos.y);
+  triangle(p10.x  +  pos.x, p10.y  +  pos.y, p1.x  +  pos.x, p1.y  +  pos.y, p4.x  +  pos.x, p4.y  +  pos.y);
+  triangle(p6.x  +  pos.x, p6.y  +  pos.y, p10.x  +  pos.x, p10.y  +  pos.y, p9.x  +  pos.x, p9.y  +  pos.y);
+  triangle(p6.x  +  pos.x, p6.y  +  pos.y, p2.x  +  pos.x, p2.y  +  pos.y, p3.x  +  pos.x, p3.y  +  pos.y);
+  triangle(p6.x  +  pos.x, p6.y  +  pos.y, p7.x  +  pos.x, p7.y  +  pos.y, p8.x  +  pos.x, p8.y  +  pos.y);
+  triangle(p6.x  +  pos.x, p6.y  +  pos.y, p5.x  +  pos.x, p5.y  +  pos.y, p4.x  +  pos.x, p4.y  +  pos.y);
+  
+  noStroke();
+  //Left half
+  if  (averageRating >= n + 0.5)  {
+    fill(255,255,0);
+  }
+  else  {
+    fill(120,120,0);
+  }
+  triangle(p10.x  +  pos.x, p10.y  +  pos.y, p9.x  +  pos.x, p9.y  +  pos.y, p6.x  +  pos.x, p6.y  +  pos.y);
+  triangle(p1.x  +  pos.x, p1.y  +  pos.y, p6.x  +  pos.x, p6.y  +  pos.y, p7.x  +  pos.x, p7.y  +  pos.y);
+  
+  //Right half
+  if  (roundAny(averageRating, 1) >= n + 1)  {
+    fill(255,255,0);
+  }
+  else  {
+    fill(120,120,0);
+  }
+  triangle(p2.x  +  pos.x, p2.y  +  pos.y, p3.x  +  pos.x, p3.y  +  pos.y, p6.x  +  pos.x, p6.y  +  pos.y);
+  triangle(p1.x  +  pos.x, p1.y  +  pos.y, p5.x  +  pos.x, p5.y  +  pos.y, p6.x  +  pos.x, p6.y  +  pos.y);
   
 }
