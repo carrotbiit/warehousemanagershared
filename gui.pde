@@ -112,7 +112,7 @@ public void createGUI(){
   simSpeedSlider = new GCustomSlider(controls, 130, 205, 100, 44, "grey_blue");
   simSpeedSlider.setShowValue(true);
   simSpeedSlider.setShowLimits(true);
-  simSpeedSlider.setLimits(5.0, 1.0, 50.0);
+  simSpeedSlider.setLimits(5.0, 1.0, 75.0);
   simSpeedSlider.setShowTicks(true);
   simSpeedSlider.setNumberFormat(G4P.DECIMAL, 2);
   simSpeedSlider.setLocalColorScheme(GCScheme.GOLD_SCHEME);
