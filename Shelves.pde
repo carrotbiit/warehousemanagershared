@@ -23,9 +23,11 @@ class  Shelf  {
     textSize(20);
     
     if (!detail.equals("Low")) {
-      text(this.stored.size() , this.pos.x + 50, this.pos.y + (sH/2));
+      if  (detail.equals("High"))  {
+        text(this.stored.size() , this.pos.x + 50, this.pos.y + (sH/2));
+      }
 
-    //drawing packages on the shelf
+      //drawing packages on the shelf
       noStroke();
       for  (int i = 0; i < this.stored.size(); i++)  {
         

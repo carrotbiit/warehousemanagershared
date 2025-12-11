@@ -52,27 +52,7 @@ void drawUI() {
   textAlign(RIGHT);
   text(dollarFormat(grossProfit), uiX - gap, 340);
   netProfit = grossProfit - totalExpenses;
-  if  (detail.equals("High"))  {
-    text(dollarFormat(netProfit), uiX - gap, 392);
-    text(dollarFormat(netProfit), uiX - gap, 392);
-    text(dollarFormat(netProfit), uiX - (gap-1), 390);
-    text(dollarFormat(netProfit), uiX - (gap-2), 390);
-    if  (netProfit > 0)  { //setting fill color for profit, red if negative, green if position, grey if break even
-      fill(0,255,0);
-    }
-    else  if  (netProfit < 0)  {
-      fill(255,0,0);
-    }
-    else  {
-      fill(45);
-    }
-    text(dollarFormat(netProfit), uiX - gap, 390);
-    text(dollarFormat(netProfit), uiX - (gap+1), 390);
-  }
-  else  {
-    fill(45);
-    text(dollarFormat(netProfit), uiX - gap, 390);
-  }
+  text(dollarFormat(netProfit), uiX - gap, 390);
   
   // Warehouse rating
   fill(45);
