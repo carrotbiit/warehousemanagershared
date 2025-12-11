@@ -22,25 +22,24 @@ class  Shelf  {
     textAlign(CENTER);
     textSize(20);
     
-    if (detail.equals("High")) {
+    if (!detail.equals("Low")) {
       text(this.stored.size() , this.pos.x + 50, this.pos.y + (sH/2));
-    }
-    
+
     //drawing packages on the shelf
-    noStroke();
-    for  (int i = 0; i < this.stored.size(); i++)  {
-      
-      color  col = this.stored.get(i).colour;
-      
-      fill(col);
-      
-      if (detail.equals("High")) {
-        strokeWeight(2);
-        stroke(  red(col)*0.5, green(col)*0.5, blue(col)*0.5  );
+      noStroke();
+      for  (int i = 0; i < this.stored.size(); i++)  {
+        
+        color  col = this.stored.get(i).colour;
+        
+        fill(col);
+        
+        if (detail.equals("High")) {
+          strokeWeight(2);
+          stroke(  red(col)*0.5, green(col)*0.5, blue(col)*0.5  );
+        }
+        
+        square(this.pos.x - ((-i+int(shelfCapacity/2)) * sH), this.pos.y, sH);
       }
-      
-      square(this.pos.x - ((-i+int(shelfCapacity/2)) * sH), this.pos.y, sH);
-    
     }
     
   }
