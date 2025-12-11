@@ -35,10 +35,10 @@ class  Worker  {
     if  (this.holding != null)  {
       fill(holding.colour);
       stroke(  red(holding.colour)*0.5, green(holding.colour)*0.5, blue(holding.colour)*0.5  );
-      if  (detail.equals("Medium")) {
+      if  (  !detail.equals("High")  ) {
         noStroke();
       }
-      square(this.pos.x, this.pos.y + 8, 8);
+      square(this.pos.x + 10, this.pos.y + 5, 8);
     }
     
     noStroke();
