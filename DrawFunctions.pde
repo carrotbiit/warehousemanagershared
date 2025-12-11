@@ -46,6 +46,7 @@ void drawUI() {
 
 // Draw all of the objects
 void  drawSim() {
+  //println();
   noStroke();
 
   //draw the roads
@@ -71,7 +72,7 @@ void  drawSim() {
     for (Truck truck : trucks) {
       truck.drawMe();
       text(truck.numCurWorkers, truck.position.x - 10, truck.position.y);
-      println(truck.state, truck.load, truck.maxCapacity, truck.numCurWorkers);
+      //println(truck.state, truck.load, truck.maxCapacity, truck.numCurWorkers);
     }
     
     incomingTruck.drawMe();
@@ -90,7 +91,7 @@ void  drawSim() {
   }
   
   // draw the delivery text
-  println( "num workers " , incomingTruck.numCurWorkers  );
-  println( "num packages " , incomingTruck.packages.get(0).size());
-  println( "incoming state ", incomingTruck.state);
+  //println( "num workers " , incomingTruck.numCurWorkers  );
+  //println( "num packages " , incomingTruck.packages.get(0).size());
+  //println( "incoming state ", incomingTruck.state);
 }

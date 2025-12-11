@@ -236,6 +236,7 @@ class Truck {
         averageRating = getNewAverage(item.getSatisfaction());
         grossProfit += item.profit;
         this.load -= item.weight;
+        this.totalPackageCount--; //test
         break;
       }
     }

@@ -311,7 +311,7 @@ class  Worker  {
   void  searchOutgoing()  {
     
     for  (Truck t: trucks)  {
-      if  (  t.state.equals("Stationary")  )  {
+      if  (  t.state.equals("Stationary")  )  { 
         
         //check incoming                                                           //careful ||||||
         if  (  incomingTruck.state.equals("Unloading")  ){//&&  incomingTruck.numCurWorkers < 5  )  {//&&  incomingTruck.numCurWorkers < incomingTruck.packages.get(0).size())  {
@@ -328,7 +328,7 @@ class  Worker  {
               t.load += p.weight;  //**********************************************
               t.numCurWorkers += 1;
               p.claimed = true;
-              println(  trucks.indexOf(t), t.state  ,  frameCount);
+              //println(  trucks.indexOf(t), t.state  ,  frameCount);
               break;
             }
             else  if  (  !t.canFit(p)  &&  !t.state.equals("Waiting To Leave")  &&  !queue.contains(t)  &&  t.numCurWorkers == 0)  {
@@ -353,7 +353,7 @@ class  Worker  {
           for  (Shelf s: Shelves)  {
             for  (int i = 0; i < s.stored.size(); i++)  {
               Package p = s.stored.get(i);
-              //println(p.weight, t.load, t.maxCapacity, t.canFit(p));
+              println(p.weight, t.load, t.maxCapacity, t.canFit(p));
               if  (  !p.claimed  &&  t.canFit(p)  &&  t.state.equals("Stationary")  )  {  //found an unclaimed AND valid package for truck t from SHELF S
                 this.targetShelf(s);
                 this.setVelTarget();
@@ -367,7 +367,7 @@ class  Worker  {
                 break;
               }
               else  if  (  !t.canFit(p)  &&  !t.state.equals("Waiting To Leave")  &&  !queue.contains(t)  &&  t.numCurWorkers == 0)  {
-                //println("sent truck to leave");
+                println("sent truck to leave", trucks.indexOf(t), frameCount);
                 queue.add(t);
                 t.state = "Waiting to Leave";
                 //break;
