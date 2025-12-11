@@ -19,6 +19,7 @@ void reset(){
   // Expenses and profit
   totalWageExpense = 0;
   totalGasExpense = 0;
+  gasPriceDT = truckSpeed * gasPrice / 200;
   netProfit = 0;
   grossProfit = 0;
    
@@ -45,6 +46,10 @@ void reset(){
   loadRoads();
   loadHouses();
   loadTrucks();
+  
+  // Make the user see the affected changes
+  drawSim();
+  drawUI();
 }
 
 // Create orders on a time interval

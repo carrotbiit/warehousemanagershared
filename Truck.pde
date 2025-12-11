@@ -87,7 +87,7 @@ class Truck {
     
     // Process movement and gas expense
     this.position.add(PVector.mult(this.velocity, simSpeed));
-    totalGasExpense += this.velocity.mag() * gasPriceDT;
+    totalGasExpense += simSpeed * gasPriceDT;
    
     // Incoming truck has reached the warehouse
     if (this.state.equals("Shipping to Warehouse") && isNear(this.position.y, this.roadOn.bottomY - 10)) {
