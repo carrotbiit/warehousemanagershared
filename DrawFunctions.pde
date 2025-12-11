@@ -1,3 +1,4 @@
+// Draw the side panel UI
 void drawUI() {
   noStroke();
 
@@ -23,30 +24,28 @@ void drawUI() {
   text("Total Labour Expenses", 10, 210);
   text("Total Expenses", 10, 260);
   textAlign(RIGHT);
-  text("\n$ " + nfc(roundAny( totalGasExpense, 2), 2), uiX - 10, 160);
-  text("\n$ " + nfc(roundAny( totalWageExpense, 2), 2), uiX - 10, 210);
-  text("\n$ " + nfc(roundAny( totalGasExpense + totalWageExpense, 2), 2), uiX - 10, 260);
+  text(dollarFormat(totalGasExpense), uiX - 10, 160);
+  text(dollarFormat(totalWageExpense), uiX - 10, 210);
+  totalExpenses = totalGasExpense + totalWageExpense;
+  text(dollarFormat(totalExpenses), uiX - 10, 260);
   
   // Profit
   textAlign(LEFT);
   text("Gross Profit", 10, 310);
   text("Net Profit", 10, 360);
   textAlign(RIGHT);
-  text("\n$ " + nfc(roundAny( grossProfit, 2), 2), uiX - 10, 310);
-  text("\n$ " + nfc(roundAny( grossProfit - totalGasExpense - totalWageExpense, 2), 2), uiX - 10, 360);
+  text(dollarFormat(grossProfit), uiX - 10, 310);
+  netProfit = grossProfit - totalExpenses;
+  text(dollarFormat(netProfit), uiX - 10, 360);
   
   // Warehouse rating
   textAlign(CENTER);
   text("Rating: " + nf(roundAny(averageRating, 2), 0, 2) + "/5", uiX / 2, 410);
-
-
-  //println(curTime);
 }
 
 
-
+// Draw all of the objects
 void  drawSim() {
-  println();
   noStroke();
 
   //draw the roads
@@ -67,7 +66,6 @@ void  drawSim() {
     house.drawMe();
   }
   
-  //println();
   //draw the trucks
   if  (showTrucks)  {
     for (Truck truck : trucks) {
@@ -87,13 +85,8 @@ void  drawSim() {
   if  (showEmployees)  {
     for  (Worker worker : Workers) {
       worker.drawMe();
-      //println(worker.state);
-      //println("\t");
-      //print(  incomingTruck.packages.get(0).indexOf(worker.targPack)  );
     }
   }
-
-  //draw the packages
   
   // draw the delivery text
   println( "num workers " , incomingTruck.numCurWorkers  );

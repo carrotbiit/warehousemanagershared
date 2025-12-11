@@ -1,6 +1,12 @@
-float  roundAny(float  num, int n)  { //decimal rounding function
+// Decimal rounding function
+float  roundAny(float  num, int n)  {
   int p = int(  pow(10, n)  );
   return  float(round(num * p))/p;
+}
+
+// Formatting for expenses and income
+String dollarFormat(float value) {
+  return "\n$ " + nfc(roundAny( value, 2), 2);
 }
 
 // Computes midpoint between two values 
@@ -26,7 +32,7 @@ void updatePackages() {
 //  Process movement and delivery for each truck
 void updateTrucks() {
   boolean canLeave = true;
-
+  // Process truck movement and package delivery
   for (Truck truck : trucks) {
     if (truck.state.equals("Leaving Warehouse") && truck.position.x <= Warehouse.pos.x + Warehouse.w / 2 + 30) {
       canLeave = false;
@@ -34,6 +40,7 @@ void updateTrucks() {
     truck.move();
     truck.deliverPackage();
   }
+  // Make any awaiting trucks leave the warehouse
   if (canLeave && !queue.isEmpty()) {
     queue.get(0).leaveWarehouse();
     queue.remove(0);
@@ -41,6 +48,7 @@ void updateTrucks() {
   incomingTruck.move();
 }
 
+// Update each worker
 void  updateWorkers()  {
   for (Worker w : Workers) {
     w.update();

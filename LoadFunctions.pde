@@ -1,3 +1,4 @@
+// Add the roads for the simulation
 void loadRoads() {
   // Variable declarations
   float x;
@@ -9,7 +10,7 @@ void loadRoads() {
   warehouseOut = new Road(Warehouse.pos.x + Warehouse.w / 2 + 25, Warehouse.pos.y, "Horizontal", 25, laneWidth, false); // Extends 50 pixels out from the right of the warehouse
   mergeRoad = new Road(warehouseOut.center.x + warehouseOut.radiusWidth + 10, Warehouse.pos.y, "Vertical", laneWidth, height / 2 - spacing + laneWidth, false); // Meets the warehouseOut and the other streets
   
-  // Add streets
+  // Add the streets
   x = midpoint(width, mergeRoad.center.x + mergeRoad.radiusWidth) - roadWidth; // Between the merging road and the right edge of the screen
   for (int count = 0; count < numStreets; count++) {
     streets.add(new Road(x, y, "Horizontal", x - mergeRoad.center.x - mergeRoad.radiusWidth, laneWidth, true));
@@ -17,7 +18,7 @@ void loadRoads() {
   }
 }
 
-// Add houses to each street
+// Add the houses to each street
 void loadHouses() {
   for (Road street : streets) {
     for (int houseCount = 0; houseCount < numHouses; houseCount += 2) {
@@ -38,6 +39,7 @@ void loadTrucks() {
   incomingTruck = new Truck(warehouseIn, warehouseIn.center.x - warehouseIn.radiusWidth, warehouseIn.center.y - warehouseIn.radiusHeight - truckHeight);
 }
 
+// Add the shelves to the warehouse
 void  loadShelves()  {
   for  (int i = 0; i < numShelves; i++)  {
     float  x  =  Warehouse.pos.x  -  (Warehouse.w/2)  +  spacer  +  (sW/2);
@@ -46,6 +48,7 @@ void  loadShelves()  {
   }
 }
 
+// Add the workers to the warehouse
 void  loadWorkers()  {
   int  xN, yN;
   //xN = round(numWorkers/2);
