@@ -11,36 +11,36 @@ void drawUI() {
   fill(0);
   textSize(30);
   textAlign(CENTER);
-  text("Warehouse\nManager", uiX/2, 30);
+  text("Warehouse\nManager", uiX/2, 50);
 
   // Number of trucks and employees
   textSize(20);
   textAlign(LEFT);
-  text("# of Trucks:  " + numTrucks, 10, 100);
-  text("# of Employees:  " + numWorkers, 10, 120);
+  text("# of Trucks:  " + numTrucks, 10, 120);
+  text("# of Employees:  " + numWorkers, 10, 140);
 
   // Expenses
-  text("Total Gas Expenses", 10, 160);
-  text("Total Labour Expenses", 10, 210);
+  text("Total Gas Expenses", 10, 180);
+  text("Total Labour Expenses", 10, 230);
   text("Total Expenses", 10, 260);
   textAlign(RIGHT);
-  text(dollarFormat(totalGasExpense), uiX - 10, 160);
-  text(dollarFormat(totalWageExpense), uiX - 10, 210);
+  text(dollarFormat(totalGasExpense), uiX - 10, 180);
+  text(dollarFormat(totalWageExpense), uiX - 10, 230);
   totalExpenses = totalGasExpense + totalWageExpense;
-  text(dollarFormat(totalExpenses), uiX - 10, 260);
+  text(dollarFormat(totalExpenses), uiX - 10, 280);
   
   // Profit
   textAlign(LEFT);
-  text("Gross Profit", 10, 310);
-  text("Net Profit", 10, 360);
+  text("Gross Profit", 10, 330);
+  text("Net Profit", 10, 380);
   textAlign(RIGHT);
-  text(dollarFormat(grossProfit), uiX - 10, 310);
+  text(dollarFormat(grossProfit), uiX - 10, 330);
   netProfit = grossProfit - totalExpenses;
-  text(dollarFormat(netProfit), uiX - 10, 360);
+  text(dollarFormat(netProfit), uiX - 10, 380);
   
   // Warehouse rating
   textAlign(CENTER);
-  text("Rating: " + nf(roundAny(averageRating, 2), 0, 2) + "/5", uiX / 2, 410);
+  text("Rating: " + nf(roundAny(averageRating, 2), 0, 2) + "/5", uiX / 2, 450);
 }
 
 
