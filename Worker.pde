@@ -198,7 +198,6 @@ class  Worker  {
           for  (Shelf s: Shelves)  {
             for  (int i = 0; i < s.stored.size(); i++)  {
               Package p = s.stored.get(i);
-              println(!t.canFit(p),  !t.state.equals("Waiting To Leave"),  !queue.contains(t),  t.numCurWorkers);
               if  (  !p.claimed  &&  t.canFit(p)  &&  t.state.equals("Stationary")  )  {  //found an unclaimed AND valid package for truck t from SHELF S
                 this.targetShelf(s);
                 this.setVelTarget();
