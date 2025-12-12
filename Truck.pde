@@ -13,6 +13,7 @@ class Truck {
   int  numCurWorkers;  //the number of workers working on a truck
   int framesSinceDelivery; // The number of frames elapsed since the last delivery
   int totalPackageCount; // Avoids recalculating total packages in the packages ArrayList
+  int nextStreetIdx;  // Prevent duplicate calculation by pre-calculating the next street to deliver to
 
   // Constructor method
   Truck(Road roadOn, float x, float y) {
@@ -28,8 +29,11 @@ class Truck {
     for (int idx = 0; idx < numStreets; idx++) {
       packages.add(new ArrayList<Package>());
     }
-    streetIdx = -1;
-    numCurWorkers = 0;
+    this.streetIdx = -1;
+    this.numCurWorkers = 0;
+    this.framesSinceDelivery = 0;
+    this.totalPackageCount = 0;
+    this.nextStreetIdx = -1;
   }
 
   // Draw method
@@ -92,8 +96,9 @@ class Truck {
     totalGasExpense += simSpeed * gasPriceDT;
    
     // Incoming truck has reached the warehouse
-    if (this.state.equals("Shipping to Warehouse") && isNear(this.position.y, this.roadOn.bottomY - 10)) {
+    if (this.state.equals("Shipping to Warehouse") && isNear(this.position.y, warehouseIn.bottomY - truckWidth)) {
       this.state = "Unloading";
+      this.position = new PVector(warehouseIn.leftX, warehouseIn.bottomY - truckHeight);
       this.velocity = new PVector(0, 0);
     }
     
@@ -104,54 +109,65 @@ class Truck {
     }
     
     // Truck has left the warehouse
-    else if (this.state.equals("Leaving Warehouse") && isNear(this.position.x, this.roadOn.rightX)) {
-      this.state = "Going to Street";
-      this.streetIdx = locateNextStreet();
-      this.roadOn = streets.get(streetIdx);
+    else if (this.state.equals("Leaving Warehouse")) {
       // Move down
-      if (this.position.y < this.roadOn.center.y) {
-        this.position = new PVector(mergeRoad.leftX, mergeRoad.center.y - warehouseOut.radiusHeight);
+      if (isNear(this.position.x + truckWidth, mergeRoad.center.x) && this.position.y < streets.get(this.nextStreetIdx).center.y) {
+        this.state = "Going to Street";
+        this.streetIdx = this.nextStreetIdx;
+        this.roadOn = streets.get(streetIdx);
+        this.position = new PVector(mergeRoad.leftX, mergeRoad.center.y);
         this.velocity = new PVector(0, truckSpeed);
       } 
       // Move up
-      else {
+      else if (isNear(this.position.x + truckWidth, mergeRoad.rightX) && this.position.y > streets.get(this.nextStreetIdx).center.y) {
+        this.state = "Going to Street";
+        this.streetIdx = this.nextStreetIdx;
+        this.roadOn = streets.get(streetIdx);
+        this.position = new PVector(mergeRoad.center.x, warehouseOut.bottomY - truckWidth);
         this.velocity = new PVector(0, -truckSpeed);
-        this.position = new PVector(mergeRoad.center.x, mergeRoad.center.y + warehouseOut.radiusHeight);
+      }
+      // Move forwards
+      else if (this.position.y == streets.get(this.nextStreetIdx).center.y) {
+        this.streetIdx = this.nextStreetIdx;
+        this.state = "At Street";
       }
     }
     
-    // Truck is atits designated street
-    else if (this.state.equals("Going to Street") && isNear(this.position.y, this.roadOn.center.y)) {
+    // Truck is at the designated street
+    else if (this.state.equals("Going to Street") && ((this.velocity.y < 0 && isNear(this.position.y, this.roadOn.center.y)) || (this.velocity.y > 0 && isNear(this.position.y + truckWidth, this.roadOn.bottomY)))) {
       this.state = "At Street";
+      this.position = new PVector(this.position.x, this.roadOn.center.y);
       this.velocity = new PVector(truckSpeed, 0);
     } 
     // Truck finished delivering packages at its street
     else if (this.state.equals("At Street") && this.packages.get(this.streetIdx).isEmpty()) {
       this.state = "Leaving Street";
+      this.nextStreetIdx = locateNextStreet();
       this.position = new PVector(this.position.x, this.roadOn.topY);
       this.velocity = new PVector(-truckSpeed, 0);
     } 
     
     // Truck has left its street
-    else if (this.state.equals("Leaving Street") && isNear(this.position.x, mergeRoad.center.x)) {
-      this.streetIdx = locateNextStreet();
-      // No more packages need to be delivered --> return to warehouse
-      if (this.streetIdx == -1) {
+    else if (this.state.equals("Leaving Street")) {
+      // Move down to warehouse (no more packages to deliver)
+      if (nextStreetIdx == -1 && this.position.y < warehouseOut.center.y && isNear(this.position.x, mergeRoad.leftX)) {
         this.state = "Returning from Street";
+        this.streetIdx = -1;
         this.roadOn = warehouseOut;
-        // Move down
-        if (this.position.y < this.roadOn.center.y) {
-          this.position = new PVector(mergeRoad.leftX, this.position.y);
-          this.velocity = new PVector(0, truckSpeed);
-        } 
-        // Move up
-        else {
-          this.position = new PVector(mergeRoad.center.x, this.position.y);
-          this.velocity = new PVector(0, -truckSpeed);
-        }
+        this.position = new PVector(mergeRoad.leftX, this.position.y);
+        this.velocity = new PVector(0, truckSpeed);
+      } 
+      // Move up to warehouse (no more packages to deliver)
+      else if (this.nextStreetIdx == -1 && this.position.y > warehouseOut.center.y && isNear(this.position.x, mergeRoad.center.x)) {
+        this.state = "Returning from Street";
+        this.streetIdx = -1;
+        this.roadOn = warehouseOut;
+        this.position = new PVector(mergeRoad.center.x, this.position.y - truckWidth + truckHeight);
+        this.velocity = new PVector(0, -truckSpeed);
       }
-      else {
+      else if (isNear(this.position.x, mergeRoad.leftX)) {
         this.state = "Going to Street";
+        this.streetIdx = this.nextStreetIdx;
         this.roadOn = streets.get(streetIdx);
         this.position = new PVector(mergeRoad.leftX, this.position.y);
         this.velocity = new PVector(0, truckSpeed);
@@ -159,18 +175,27 @@ class Truck {
     }
     
     // Truck has returned to the warehouse street
-    else if (this.state.equals("Returning from Street") && isNear(this.position.y, this.roadOn.center.y)) {
-      this.state = "Returning from Intersection";
-      this.position = new PVector(this.position.x, this.roadOn.topY);
-      this.velocity = new PVector(-truckSpeed, 0);
+    else if (this.state.equals("Returning from Street")) {
+      // Came from bottom
+      if (this.velocity.y < 0 && isNear(this.position.y, warehouseOut.topY)) {
+        this.state = "Returning from Intersection";
+        this.position = new PVector(mergeRoad.rightX - truckWidth, warehouseOut.topY);
+        this.velocity = new PVector(-truckSpeed, 0);
+      }
+      // Came from top
+      else if (this.velocity.y > 0 && isNear(this.position.y, warehouseOut.center.y - truckWidth)) {
+        this.state = "Returning from Intersection";
+        this.position = new PVector(mergeRoad.center.x - truckWidth, warehouseOut.topY);
+        this.velocity = new PVector(-truckSpeed, 0);
+      }
     }
     
     // Truck has returned to warehouse
-    else if (this.state.equals("Returning from Intersection") && isNear(this.position.x, this.roadOn.leftX)) {
+    else if (this.state.equals("Returning from Intersection") && isNear(this.position.x, warehouseOut.leftX)) {
       this.state = "Stationary";
       this.roadOn = null;
       this.position = restPosition.copy();
-      this.load = 0; //test
+      this.load = 0;
       this.numCurWorkers = 0;
     }
   }
@@ -207,6 +232,7 @@ class Truck {
   void leaveWarehouse() {
     this.roadOn = warehouseOut;
     this.state = "Leaving Warehouse";
+    this.nextStreetIdx = locateNextStreet();
     this.position = new PVector(this.roadOn.center.x - this.roadOn.radiusWidth, this.roadOn.center.y);
     this.velocity = new PVector(truckSpeed, 0);
   }
