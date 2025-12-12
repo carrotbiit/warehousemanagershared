@@ -97,8 +97,8 @@ class  Worker  {
         this.pos.add(this.vel.copy().mult(simSpeed));
       }
       
-      else  {  //We have reached our target
-        this.pos = this.target.copy();
+      else  {  //We have reached our target, so run the necessary code at that stage
+        this.pos = this.target.copy();  //snap position to target incase we are off by a bit
         
         if  (  this.state.equals("Unloading")  )  {
           //This line is stupidly long but I need it this way to set holding to a COPY of targPack, NOT a reference
@@ -142,7 +142,7 @@ class  Worker  {
         else  if  (  this.state.equals("Retrieving")  )  {
           this.holding = Shelves.get(targShelf).stored.get(  Shelves.get(targShelf).stored.indexOf(targPack)  );
           Shelves.get(targShelf).stored.remove(  this.holding  );
-          this.holding.claimed = true; //false? i dont think it matters
+          this.holding.claimed = true;
           Shelves.get(targShelf).capacity += 1;
           this.targShelf = -1;
           
@@ -167,8 +167,8 @@ class  Worker  {
     for  (Truck t: trucks)  {
       if  (  t.state.equals("Stationary")  )  { 
         
-        //check incoming                                                           //careful ||||||
-        if  (  incomingTruck.state.equals("Unloading")  ){//&&  incomingTruck.numCurWorkers < 5  )  {//&&  incomingTruck.numCurWorkers < incomingTruck.packages.get(0).size())  {
+        //check incoming
+        if  (  incomingTruck.state.equals("Unloading")  ){
           //loop through packages on the incoming
           for  (int i = 0; i < incomingTruck.packages.get(0).size(); i++)  {
             Package p = incomingTruck.packages.get(0).get(i);  //setting
@@ -223,7 +223,8 @@ class  Worker  {
               
             }
             
-            if  (  this.state.equals("Retrieving")  )  {  //Leave if we found a valid package
+            //Leave if we found a valid package
+            if  (  this.state.equals("Retrieving")  )  {
                 break;
             }
             
@@ -238,8 +239,7 @@ class  Worker  {
   
   //Looking to unload the incoming truck
   void  searchIncoming()  {
-    //if  (  incomingTruck.state.equals("Unloading")  &&  incomingTruck.numCurWorkers < 4  &&  incomingTruck.numCurWorkers < incomingTruck.packages.get(0).size())  {
-    if  (  incomingTruck.state.equals("Unloading")  ){//&&  incomingTruck.numCurWorkers < 5  )  {
+    if  (  incomingTruck.state.equals("Unloading")  ){
 
       for  (int i = 0; i < incomingTruck.packages.get(0).size(); i++)  {
         Package p = incomingTruck.packages.get(0).get(i);  //setting
@@ -261,7 +261,8 @@ class  Worker  {
           }
         }
         
-        if  (  this.state.equals("Unloading")  )  {  //Leave if we found a valid package
+        //Leave if we found a valid package
+        if  (  this.state.equals("Unloading")  )  {
           break;
         }
         
@@ -273,23 +274,26 @@ class  Worker  {
   //Sets target to closest outgoing Truck  (still needs work)
   void  targetOutgoing(Truck  t)  {
     this.target = t.restPosition.copy();
-    this.target.y += 5;
+    this.target.y += 5 + random(-5, 5);
     this.target.x -= 5;
+    this.target.x += random(-5,0);
   }
   
   //Sets target to incoming truck
   void  targetIncoming()  {
     this.target = incomingTruck.position.copy();
     this.target.y += 15;
-    this.target.x += 10;
+    this.target.x += 10 + random(-5, 5);
   }
   
+  //Target a shelf object, used in conjuction with the targShelf integer
   void  targetShelf(int  i)  {
     this.target = Shelves.get(i).pos.copy();
     this.target.y -= sH;
     this.target.x += random(-sW/2, sW/2);
   }
   
+  //Target a shelf object, used in for-loop checks
   void  targetShelf(Shelf s)  {
     this.target = s.pos.copy();
     this.target.y -= sH;
@@ -302,7 +306,7 @@ class  Worker  {
   void  setVelTarget()  {
     this.vel = PVector.sub(this.target, this.pos);
     this.vel.normalize();
-    this.vel.mult(workerSpeed);
+    this.vel.mult(workerSpeed * random(0.85, 1));
   }
   
 }
