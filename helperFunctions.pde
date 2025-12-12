@@ -39,6 +39,7 @@ void reset(){
   allPackages = new ArrayList<Package>();
   allOrdered = new ArrayList<Package>();
   trucks = new ArrayList<Truck>();
+  queue = new ArrayList<Truck>();
   
   // Load all objects
   loadShelves();
