@@ -3,7 +3,7 @@ class  Worker  {
   PVector  pos;  //position of the worker
   PVector  vel;  //velocity of the worker
   PVector  target;  //where the worker is going
-  String  state;  //what they are currently doing (Unloading, Loading, Storring, Retrieving, Waiting, )
+  String  state;  //what they are currently doing (Unloading, Loading, Storing, Retrieving, Waiting, )
   Package  holding;  //the package the worker is moving
   Package  targPack;  //the package the worker is SEARCHING FOR when retrieving
   int  targShelf;  //the index of the shelf we are targeting when unloading etc.
@@ -112,8 +112,8 @@ class  Worker  {
             this.targetOutgoing(this.targTruck);
             this.setVelTarget();
           }
-          else  {  //STORRING PACKAGES IN SHELVES FROM INCOMING
-            this.state = "Storring";
+          else  {  //Storing PACKAGES IN SHELVES FROM INCOMING
+            this.state = "Storing";
             this.targetShelf(this.targShelf);
             this.setVelTarget();
           }
@@ -121,14 +121,14 @@ class  Worker  {
         }  //end of unloading
         
         //Store in shelf
-        else  if  (  this.state.equals("Storring")  )  {
+        else  if  (  this.state.equals("Storing")  )  {
           this.holding.claimed = false;
           Shelves.get(targShelf).stored.add(  this.holding  );
           this.holding = null;
           this.state = "Waiting";
           this.targTruck = null;
           this.targShelf = -1;
-        }  //end of storring
+        }  //end of storing
         
         //Loading
         else  if  (  this.state.equals("Loading")  )  {
