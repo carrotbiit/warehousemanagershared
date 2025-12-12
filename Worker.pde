@@ -32,7 +32,7 @@ class  Worker  {
       strokeWeight(2);
     }
     
-    if  (this.holding != null && !detail.equals("Low"))  {
+    if  (this.holding != null && !detail.equals("Low"))  { //DRAW HOLDING PACKAGE
       fill(holding.colour);
       stroke(  red(holding.colour)*0.5, green(holding.colour)*0.5, blue(holding.colour)*0.5  );
       if  (  !detail.equals("High")  ) {
@@ -60,11 +60,11 @@ class  Worker  {
       strokeWeight(2);
     }
     
-    if(detail.equals("High")){
+    if(detail.equals("High")){  //DRAW WORKER - HIGH DETAIL
       circle(this.pos.x, this.pos.y-3, 6);
       ellipse(this.pos.x, this.pos.y+5, 6, 10);
     }
-    else{
+    else{ //DRAW WORKER - LOW DETAIL
       circle(this.pos.x, this.pos.y, 10);
     }
     
